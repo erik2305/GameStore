@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="@Url.Action("Index", "Home")">
+                    Store
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Account", "Home")">
+                    Account
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Login", "Home")">
+                    Log In
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Signup", "Home")">
+                    Sign Up
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Events", "Home")">
+                    Events
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>Footer</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
