@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "AdministrationPortal";
+}
+
+<h1>Administration Portal</h1>
+<ul>
+    <li>
+        <a href="@Url.Action("Index", "Games")">
+            View Games List
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Event")">
+            View Events
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Comment")">
+            View Pending Comments
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Report")">
+            View Reports
+        </a>
+    </li>
+</ul>
