@@ -1,0 +1,160 @@
+﻿@model GameStore.Models.Game
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Game</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GameStatusCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameStatusCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameCategoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameCategoryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameSubCategoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameSubCategoryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EsrbRatingCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EsrbRatingCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EnglishName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnglishName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FrenchName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrenchName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FrenchVersion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrenchVersion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EnglishPlayerCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnglishPlayerCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FrenchPlayerCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrenchPlayerCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GamePerspectiveCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GamePerspectiveCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EnglishTrailer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnglishTrailer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FrenchTrailer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrenchTrailer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EnglishDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnglishDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FrenchDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrenchDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EnglishDetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnglishDetail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FrenchDetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrenchDetail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

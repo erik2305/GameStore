@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -37,6 +38,13 @@ namespace GameStore.Controllers
         public ActionResult Events()
         {
             ViewBag.Message = "Page with the list of events";
+
+            return View();
+        }
+
+        public ActionResult AdministrationPortal()
+        {
+            ViewBag.Message = "Administration Portal";
 
             return View();
         }
