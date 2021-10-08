@@ -11,26 +11,45 @@ namespace GameStore.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Game
     {
+        [ScaffoldColumn(false)]
         public System.Guid Guid { get; set; }
+        [Required()]
         public string GameStatusCode { get; set; }
+        [Required()]
         public int GameCategoryId { get; set; }
+        [Required()]
         public Nullable<int> GameSubCategoryId { get; set; }
+        [Required()]
         public string EsrbRatingCode { get; set; }
+        [Required()]
         public string EnglishName { get; set; }
+        [Required()]
         public string FrenchName { get; set; }
+        [Required()]
         public bool FrenchVersion { get; set; }
+        [Required()]
         public string EnglishPlayerCount { get; set; }
+        [Required()]
         public string FrenchPlayerCount { get; set; }
+        [Required()]
         public string GamePerspectiveCode { get; set; }
+        [Required()]
         public string EnglishTrailer { get; set; }
+        [Required()]
         public string FrenchTrailer { get; set; }
+        [Required()]
         public string EnglishDescription { get; set; }
+        [Required()]
         public string FrenchDescription { get; set; }
+        [Required()]
         public string EnglishDetail { get; set; }
+        [Required()]
         public string FrenchDetail { get; set; }
+        [Required()]
         public string UserName { get; set; }
     }
 }
