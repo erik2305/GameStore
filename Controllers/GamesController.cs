@@ -13,7 +13,7 @@ namespace GameStore.Controllers
     public class GamesController : Controller
     {
         private CVGSEntities db = new CVGSEntities();
-
+        // games
         // GET: Games
         public ActionResult Index()
         {
