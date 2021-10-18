@@ -2,9 +2,11 @@
     transform: scale(1.25);
 }
 
-img {
+a img {
     margin: 5px;
     border: groove 1px lightblue;
+    height: 175px;
+    width: 350px;
 }
 
 table {
