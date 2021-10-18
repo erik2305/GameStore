@@ -12,10 +12,11 @@ namespace GameStore.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     public partial class Game
     {
-        [ScaffoldColumn(false)]
+        [ScaffoldColumn(true)]
         public System.Guid Guid { get; set; }
         [Required()]
         public string GameStatusCode { get; set; }
@@ -37,17 +38,21 @@ namespace GameStore.Models
         public string FrenchPlayerCount { get; set; }
         [Required()]
         public string GamePerspectiveCode { get; set; }
+        [AllowHtml]
         [Required()]
         public string EnglishTrailer { get; set; }
         [Required()]
+        [AllowHtml]
         public string FrenchTrailer { get; set; }
         [Required()]
         public string EnglishDescription { get; set; }
         [Required()]
         public string FrenchDescription { get; set; }
         [Required()]
+        [AllowHtml]
         public string EnglishDetail { get; set; }
         [Required()]
+        [AllowHtml]
         public string FrenchDetail { get; set; }
         [Required()]
         public string UserName { get; set; }
