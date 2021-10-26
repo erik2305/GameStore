@@ -26,7 +26,5 @@ namespace GameStore.Models
         }
     
         public virtual DbSet<Game> Games { get; set; }
-
-        public System.Data.Entity.DbSet<GameStore.Models.Report> Reports { get; set; }
     }
 }

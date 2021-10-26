@@ -11,50 +11,43 @@ namespace GameStore.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Web.Mvc;
-
+    
     public partial class Game
     {
-        [ScaffoldColumn(true)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Game()
+        {
+            this.GameEsrbContentDescriptors = new HashSet<GameEsrbContentDescriptor>();
+            this.Products = new HashSet<Product>();
+        }
+    
         public System.Guid Guid { get; set; }
-        [Required()]
         public string GameStatusCode { get; set; }
-        [Required()]
         public int GameCategoryId { get; set; }
-        [Required()]
         public Nullable<int> GameSubCategoryId { get; set; }
-        [Required()]
         public string EsrbRatingCode { get; set; }
-        [Required()]
         public string EnglishName { get; set; }
-        [Required()]
         public string FrenchName { get; set; }
-        [Required()]
         public bool FrenchVersion { get; set; }
-        [Required()]
         public string EnglishPlayerCount { get; set; }
-        [Required()]
         public string FrenchPlayerCount { get; set; }
-        [Required()]
         public string GamePerspectiveCode { get; set; }
-        [AllowHtml]
-        [Required()]
         public string EnglishTrailer { get; set; }
-        [Required()]
-        [AllowHtml]
         public string FrenchTrailer { get; set; }
-        [Required()]
         public string EnglishDescription { get; set; }
-        [Required()]
         public string FrenchDescription { get; set; }
-        [Required()]
-        [AllowHtml]
         public string EnglishDetail { get; set; }
-        [Required()]
-        [AllowHtml]
         public string FrenchDetail { get; set; }
-        [Required()]
         public string UserName { get; set; }
+    
+        public virtual EsrbRating EsrbRating { get; set; }
+        public virtual GameCategory GameCategory { get; set; }
+        public virtual GamePerspective GamePerspective { get; set; }
+        public virtual GameStatu GameStatu { get; set; }
+        public virtual GameSubCategory GameSubCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GameEsrbContentDescriptor> GameEsrbContentDescriptors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
     }
 }
