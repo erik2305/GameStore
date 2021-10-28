@@ -328,6 +328,12 @@
     <Content Include="Models\CVGS_Tables.edmx.diagram">
       <DependentUpon>CVGS_Tables.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\GameId\GameInfo2.cshtml" />
+    <Content Include="Views\Games\Create.cshtml" />
+    <Content Include="Views\Games\Delete.cshtml" />
+    <Content Include="Views\Games\Details.cshtml" />
+    <Content Include="Views\Games\Edit.cshtml" />
+    <Content Include="Views\Games\Index.cshtml" />
     <Content Include="Views\GameId\GameInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -371,11 +377,6 @@
     <Content Include="Views\Home\Account.cshtml" />
     <Content Include="Views\Home\Events.cshtml" />
     <Content Include="Views\Home\AdministrationPortal.cshtml" />
-    <Content Include="Views\Games\Create.cshtml" />
-    <Content Include="Views\Games\Delete.cshtml" />
-    <Content Include="Views\Games\Details.cshtml" />
-    <Content Include="Views\Games\Edit.cshtml" />
-    <Content Include="Views\Games\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,46 +1,15 @@
-﻿
-@model GameStore.Models.Game
+﻿@model GameStore.Models.Game
 
 @{
-    ViewBag.Title = @Html.DisplayFor(model => model.EnglishName);
+    ViewBag.Title = "Details";
 }
 
+<h2>Details</h2>
+
 <div>
-    <h3>@Html.DisplayFor(model => model.EnglishName)</h3>
+    <h4>Game</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.GameStatusCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GameStatusCode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GameCategoryId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GameCategoryId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GameSubCategoryId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GameSubCategoryId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EsrbRatingCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EsrbRatingCode)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.EnglishName)
         </dt>
@@ -79,14 +48,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.FrenchPlayerCount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GamePerspectiveCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GamePerspectiveCode)
         </dd>
 
         <dt>
@@ -145,6 +106,49 @@
             @Html.DisplayFor(model => model.UserName)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.EsrbRating.EnglishRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EsrbRating.EnglishRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameCategory.EnglishCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameCategory.EnglishCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GamePerspective.EnglishPerspectiveName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GamePerspective.EnglishPerspectiveName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameStatu.EnglishCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameStatu.EnglishCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameSubCategory.EnglishCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameSubCategory.EnglishCategory)
+        </dd>
+
     </dl>
 </div>
-
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Guid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

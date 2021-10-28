@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Details";
-    Func<object, string> rawString = x => (string) x;
 }
 
 <h2>Details</h2>
@@ -11,38 +10,6 @@
     <h4>Game</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.GameStatusCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GameStatusCode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GameCategoryId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GameCategoryId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GameSubCategoryId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GameSubCategoryId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EsrbRatingCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EsrbRatingCode)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.EnglishName)
         </dt>
@@ -84,19 +51,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.GamePerspectiveCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GamePerspectiveCode)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.EnglishTrailer)
         </dt>
 
         <dd>
-            @Html.Raw(Model.EnglishTrailer)
+            @Html.DisplayFor(model => model.EnglishTrailer)
         </dd>
 
         <dt>
@@ -104,7 +63,7 @@
         </dt>
 
         <dd>
-            @Html.Raw(Model.FrenchTrailer)
+            @Html.DisplayFor(model => model.FrenchTrailer)
         </dd>
 
         <dt>
@@ -128,7 +87,7 @@
         </dt>
 
         <dd>
-            @Html.Raw(Model.EnglishDetail)
+            @Html.DisplayFor(model => model.EnglishDetail)
         </dd>
 
         <dt>
@@ -136,7 +95,7 @@
         </dt>
 
         <dd>
-            @Html.Raw(Model.FrenchDetail)
+            @Html.DisplayFor(model => model.FrenchDetail)
         </dd>
 
         <dt>
@@ -145,6 +104,46 @@
 
         <dd>
             @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EsrbRating.EnglishRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EsrbRating.EnglishRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameCategory.EnglishCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameCategory.EnglishCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GamePerspective.EnglishPerspectiveName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GamePerspective.EnglishPerspectiveName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameStatu.EnglishCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameStatu.EnglishCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameSubCategory.EnglishCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameSubCategory.EnglishCategory)
         </dd>
 
     </dl>

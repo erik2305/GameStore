@@ -13,24 +13,12 @@ namespace GameStore.Controllers
     public class GamesController : Controller
     {
         private CVGS_Tables db = new CVGS_Tables();
-        
+
         // GET: Games
         public ActionResult Index()
         {
-            // Linq: Language Integrated Query
-            // sql in c#
-
-            var games = db;
-
-            var myGames = from g in db.Games
-                          where !g.EnglishName.Contains("z")
-                          select g;
-
-            {
-                //game.GameCategory 
-            }
-
-            return View(myGames);
+            var games = db.Games.Include(g => g.EsrbRating).Include(g => g.GameCategory).Include(g => g.GamePerspective).Include(g => g.GameStatu).Include(g => g.GameSubCategory);
+            return View(games.ToList());
         }
 
         // GET: Games/Details/5
@@ -51,6 +39,11 @@ namespace GameStore.Controllers
         // GET: Games/Create
         public ActionResult Create()
         {
+            ViewBag.EsrbRatingCode = new SelectList(db.EsrbRatings, "Code", "EnglishRating");
+            ViewBag.GameCategoryId = new SelectList(db.GameCategories, "Id", "EnglishCategory");
+            ViewBag.GamePerspectiveCode = new SelectList(db.GamePerspectives, "Code", "EnglishPerspectiveName");
+            ViewBag.GameStatusCode = new SelectList(db.GameStatus, "Code", "EnglishCategory");
+            ViewBag.GameSubCategoryId = new SelectList(db.GameSubCategories, "Id", "EnglishCategory");
             return View();
         }
 
@@ -69,6 +62,11 @@ namespace GameStore.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.EsrbRatingCode = new SelectList(db.EsrbRatings, "Code", "EnglishRating", game.EsrbRatingCode);
+            ViewBag.GameCategoryId = new SelectList(db.GameCategories, "Id", "EnglishCategory", game.GameCategoryId);
+            ViewBag.GamePerspectiveCode = new SelectList(db.GamePerspectives, "Code", "EnglishPerspectiveName", game.GamePerspectiveCode);
+            ViewBag.GameStatusCode = new SelectList(db.GameStatus, "Code", "EnglishCategory", game.GameStatusCode);
+            ViewBag.GameSubCategoryId = new SelectList(db.GameSubCategories, "Id", "EnglishCategory", game.GameSubCategoryId);
             return View(game);
         }
 
@@ -84,6 +82,11 @@ namespace GameStore.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.EsrbRatingCode = new SelectList(db.EsrbRatings, "Code", "EnglishRating", game.EsrbRatingCode);
+            ViewBag.GameCategoryId = new SelectList(db.GameCategories, "Id", "EnglishCategory", game.GameCategoryId);
+            ViewBag.GamePerspectiveCode = new SelectList(db.GamePerspectives, "Code", "EnglishPerspectiveName", game.GamePerspectiveCode);
+            ViewBag.GameStatusCode = new SelectList(db.GameStatus, "Code", "EnglishCategory", game.GameStatusCode);
+            ViewBag.GameSubCategoryId = new SelectList(db.GameSubCategories, "Id", "EnglishCategory", game.GameSubCategoryId);
             return View(game);
         }
 
@@ -100,6 +103,11 @@ namespace GameStore.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.EsrbRatingCode = new SelectList(db.EsrbRatings, "Code", "EnglishRating", game.EsrbRatingCode);
+            ViewBag.GameCategoryId = new SelectList(db.GameCategories, "Id", "EnglishCategory", game.GameCategoryId);
+            ViewBag.GamePerspectiveCode = new SelectList(db.GamePerspectives, "Code", "EnglishPerspectiveName", game.GamePerspectiveCode);
+            ViewBag.GameStatusCode = new SelectList(db.GameStatus, "Code", "EnglishCategory", game.GameStatusCode);
+            ViewBag.GameSubCategoryId = new SelectList(db.GameSubCategories, "Id", "EnglishCategory", game.GameSubCategoryId);
             return View(game);
         }
 

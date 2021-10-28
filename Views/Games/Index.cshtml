@@ -1,27 +1,16 @@
 ﻿@model IEnumerable<GameStore.Models.Game>
+
 @{
-    ViewBag.Title = "List of Games";
+    ViewBag.Title = "Index";
 }
 
-<h2>List of Games</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.GameStatusCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GameCategoryId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GameSubCategoryId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EsrbRatingCode)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.EnglishName)
         </th>
@@ -36,9 +25,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FrenchPlayerCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GamePerspectiveCode)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.EnglishTrailer)
@@ -61,69 +47,83 @@
         <th>
             @Html.DisplayNameFor(model => model.UserName)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EsrbRating.EnglishRating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GameCategory.EnglishCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GamePerspective.EnglishPerspectiveName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GameStatu.EnglishCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GameSubCategory.EnglishCategory)
+        </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.GameStatusCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GameCategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GameSubCategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EsrbRatingCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnglishName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FrenchName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FrenchVersion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnglishPlayerCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FrenchPlayerCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GamePerspectiveCode)
-            </td>
-            <td>
-                @Html.Raw(item.EnglishTrailer)
-            </td>
-            <td>
-                @Html.Raw(item.FrenchTrailer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnglishDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FrenchDescription)
-            </td>
-            <td>
-                @Html.Raw(item.EnglishDetail)
-            </td>
-            <td>
-                @Html.Raw(item.FrenchDetail)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Guid }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Guid }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Guid })
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnglishName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FrenchName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FrenchVersion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnglishPlayerCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FrenchPlayerCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnglishTrailer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FrenchTrailer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnglishDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FrenchDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnglishDetail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FrenchDetail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EsrbRating.EnglishRating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GameCategory.EnglishCategory)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GamePerspective.EnglishPerspectiveName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GameStatu.EnglishCategory)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GameSubCategory.EnglishCategory)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Guid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Guid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Guid })
+        </td>
+    </tr>
+}
 
 </table>

@@ -39,7 +39,6 @@ namespace GameStore.Models
         public string EnglishDetail { get; set; }
         public string FrenchDetail { get; set; }
         public string UserName { get; set; }
-    
         public virtual EsrbRating EsrbRating { get; set; }
         public virtual GameCategory GameCategory { get; set; }
         public virtual GamePerspective GamePerspective { get; set; }
