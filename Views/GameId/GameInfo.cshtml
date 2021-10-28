@@ -1,14 +1,12 @@
-﻿@model GameStore.Models.Game
+﻿
+@model GameStore.Models.Game
 
 @{
-    ViewBag.Title = "Details";
-    Func<object, string> rawString = x => (string) x;
+    ViewBag.Title = @Html.DisplayFor(model => model.EnglishName);
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Game</h4>
+    <h3>@Html.DisplayFor(model => model.EnglishName)</h3>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -96,7 +94,7 @@
         </dt>
 
         <dd>
-            @Html.Raw(Model.EnglishTrailer)
+            @Html.DisplayFor(model => model.EnglishTrailer)
         </dd>
 
         <dt>
@@ -104,7 +102,7 @@
         </dt>
 
         <dd>
-            @Html.Raw(Model.FrenchTrailer)
+            @Html.DisplayFor(model => model.FrenchTrailer)
         </dd>
 
         <dt>
@@ -128,7 +126,7 @@
         </dt>
 
         <dd>
-            @Html.Raw(Model.EnglishDetail)
+            @Html.DisplayFor(model => model.EnglishDetail)
         </dd>
 
         <dt>
@@ -136,7 +134,7 @@
         </dt>
 
         <dd>
-            @Html.Raw(Model.FrenchDetail)
+            @Html.DisplayFor(model => model.FrenchDetail)
         </dd>
 
         <dt>
@@ -149,7 +147,4 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Guid }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

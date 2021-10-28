@@ -12,12 +12,25 @@ namespace GameStore.Controllers
 {
     public class GamesController : Controller
     {
-        private CVGSEntities db = new CVGSEntities();
-
+        private CVGS_Tables db = new CVGS_Tables();
+        
         // GET: Games
         public ActionResult Index()
         {
-            return View(db.Games.ToList());
+            // Linq: Language Integrated Query
+            // sql in c#
+
+            var games = db;
+
+            var myGames = from g in db.Games
+                          where !g.EnglishName.Contains("z")
+                          select g;
+
+            {
+                //game.GameCategory 
+            }
+
+            return View(myGames);
         }
 
         // GET: Games/Details/5

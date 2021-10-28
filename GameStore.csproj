@@ -46,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNetCore.Http.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.AspNetCore.Http.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
@@ -162,13 +162,68 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GameIdController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Country.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CreditCard.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CVGS_Tables.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CVGS_Tables.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CVGS_Tables.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CVGS_Tables.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CVGS_Tables.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Department.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employee.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployeePayCategory.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EmployeePosition.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EsrbContentDescriptor.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EsrbRating.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EventLog.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Game.cs">
-      <DependentUpon>Games.tt</DependentUpon>
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GameCategory.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GameCompany.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GameEsrbContentDescriptor.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GamePerspective.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Games.Context.cs">
       <AutoGen>True</AutoGen>
@@ -185,7 +240,52 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Games.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\GameStatu.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GameSubCategory.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Inventory.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Location.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LocationType.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Person.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Platform.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Population.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PopulationClassification.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Province.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Region.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Report.cs" />
+    <Compile Include="Models\Sku.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Supplier.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SupplierContact.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -193,10 +293,21 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\Image.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\CVGS_Tables.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CVGS_Tables.edmx</DependentUpon>
+      <LastGenOutput>CVGS_Tables.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\CVGS_Tables.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CVGS_Tables.edmx</DependentUpon>
+      <LastGenOutput>CVGS_Tables.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\Games.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Games.Context.cs</LastGenOutput>
@@ -209,6 +320,21 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Web.config" />
+    <EntityDeploy Include="Models\CVGS_Tables.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CVGS_Tables.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\CVGS_Tables.edmx.diagram">
+      <DependentUpon>CVGS_Tables.edmx</DependentUpon>
+    </Content>
+    <Content Include="Views\GameId\GameInfo.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
     <EntityDeploy Include="Models\Games.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Games.Designer.cs</LastGenOutput>
@@ -227,6 +353,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Style\StyleSheet.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
