@@ -10,24 +10,9 @@ namespace GameStore.Controllers
 {
     public class GameIdController : Controller
     {
-        private CVGSEntities db = new CVGSEntities();
+        private CVGS_Tables db = new CVGS_Tables();
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult FinalFantasy4()
-        {
-            return View();
-        }
-
-        public ActionResult NHL09()
-        {
-            return View();
-        }
-
-        public ActionResult Fallout3(Guid? id)
+        public ActionResult GameInfo(Guid? id)
         {
             if (id == null)
             {
@@ -38,22 +23,8 @@ namespace GameStore.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Message = "Sign up page.";
             return View(game);
-        }
-
-        public ActionResult TombRaiderUW()
-        {
-            return View();
-        }
-
-        public ActionResult CoDWaW()
-        {
-            return View();
-        }
-
-        public ActionResult RainbowSixV2()
-        {
-            return View();
         }
     }
 }

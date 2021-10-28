@@ -26,7 +26,6 @@ namespace GameStore.Controllers
                           where !g.EnglishName.Contains("z")
                           select g;
 
-            foreach (var game in myGames)
             {
                 //game.GameCategory 
             }

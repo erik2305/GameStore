@@ -328,6 +328,7 @@
     <Content Include="Models\CVGS_Tables.edmx.diagram">
       <DependentUpon>CVGS_Tables.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\GameId\GameInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -375,12 +376,6 @@
     <Content Include="Views\Games\Details.cshtml" />
     <Content Include="Views\Games\Edit.cshtml" />
     <Content Include="Views\Games\Index.cshtml" />
-    <Content Include="Views\GameId\FinalFantasy4.cshtml" />
-    <Content Include="Views\GameId\NHL09.cshtml" />
-    <Content Include="Views\GameId\Fallout3.cshtml" />
-    <Content Include="Views\GameId\TombRaiderUW.cshtml" />
-    <Content Include="Views\GameId\CoDWaW.cshtml" />
-    <Content Include="Views\GameId\RainbowSixV2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

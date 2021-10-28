@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <link href="~/Style/StyleSheet.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
@@ -36,9 +37,15 @@
                 </a>
             </li>
             <li>
-                <a href="@Url.Action("AdministrationPortal", "Home")">
+                <a class="hidden-link"  href="@Url.Action("AdministrationPortal", "Home")">
                     Administration Portal
                 </a>
+            </li>
+            <li>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
             </li>
         </ul>
     </div>

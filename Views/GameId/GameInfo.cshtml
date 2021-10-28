@@ -1,13 +1,12 @@
-﻿@model GameStore.Models.Game
+﻿
+@model GameStore.Models.Game
 
 @{
-    ViewBag.Title = "Fallout 3";
+    ViewBag.Title = @Html.DisplayFor(model => model.EnglishName);
 }
 
-<h2>Fallout 3</h2>
-
 <div>
-    <h4>Game</h4>
+    <h3>@Html.DisplayFor(model => model.EnglishName)</h3>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -148,3 +147,4 @@
 
     </dl>
 </div>
+
