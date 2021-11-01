@@ -225,21 +225,6 @@
     <Compile Include="Models\GamePerspective.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Games.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Games.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Games.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Games.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Games.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Games.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\GameStatu.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
@@ -308,16 +293,6 @@
       <DependentUpon>CVGS_Tables.edmx</DependentUpon>
       <LastGenOutput>CVGS_Tables.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Games.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Games.Context.cs</LastGenOutput>
-      <DependentUpon>Games.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Games.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Games.edmx</DependentUpon>
-      <LastGenOutput>Games.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Web.config" />
@@ -341,13 +316,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <EntityDeploy Include="Models\Games.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Games.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Games.edmx.diagram">
-      <DependentUpon>Games.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
