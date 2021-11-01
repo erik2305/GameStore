@@ -11,7 +11,8 @@ namespace GameStore.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class EsrbRating
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,9 +20,11 @@ namespace GameStore.Models
         {
             this.Games = new HashSet<Game>();
         }
-    
+        [DisplayName("ESRB")]
         public string Code { get; set; }
+        [DisplayName("ESRB")]
         public string EnglishRating { get; set; }
+        [DisplayName("ESRB")]
         public string FrenchRating { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -11,7 +11,8 @@ namespace GameStore.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class GamePerspective
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,7 @@ namespace GameStore.Models
         }
     
         public string Code { get; set; }
+        [DisplayName("POV")]
         public string EnglishPerspectiveName { get; set; }
         public string FrenchPerspectiveName { get; set; }
     

@@ -11,7 +11,8 @@ namespace GameStore.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Game
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,18 +27,25 @@ namespace GameStore.Models
         public int GameCategoryId { get; set; }
         public Nullable<int> GameSubCategoryId { get; set; }
         public string EsrbRatingCode { get; set; }
+        [DisplayName("Name")]
         public string EnglishName { get; set; }
         public string FrenchName { get; set; }
+        [DisplayName("French?")]
         public bool FrenchVersion { get; set; }
+        [DisplayName("Players")]
         public string EnglishPlayerCount { get; set; }
         public string FrenchPlayerCount { get; set; }
         public string GamePerspectiveCode { get; set; }
+        [DisplayName("Trailer")]
         public string EnglishTrailer { get; set; }
         public string FrenchTrailer { get; set; }
+        [DisplayName("Description")]
         public string EnglishDescription { get; set; }
         public string FrenchDescription { get; set; }
+        [DisplayName("Detail")]
         public string EnglishDetail { get; set; }
         public string FrenchDetail { get; set; }
+        [DisplayName("Submitter")]
         public string UserName { get; set; }
         public virtual EsrbRating EsrbRating { get; set; }
         public virtual GameCategory GameCategory { get; set; }
