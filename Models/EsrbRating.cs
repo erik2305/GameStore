@@ -12,6 +12,7 @@ namespace GameStore.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
     public partial class EsrbRating
     {
@@ -20,6 +21,7 @@ namespace GameStore.Models
         {
             this.Games = new HashSet<Game>();
         }
+        [Required]
         [DisplayName("ESRB")]
         public string Code { get; set; }
         [DisplayName("ESRB")]
