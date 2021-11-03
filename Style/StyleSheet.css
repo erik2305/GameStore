@@ -1,0 +1,20 @@
+﻿a.zoom :hover{
+    transform: scale(1.25);
+}
+
+a img {
+    margin: 5px;
+    border: groove 1px lightblue;
+    height: 175px;
+    width: 350px;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x:auto;
+    resize: both;
+    border-collapse:collapse;
+}
+
+

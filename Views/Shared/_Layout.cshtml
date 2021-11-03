@@ -1,9 +1,10 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <link href="~/Style/StyleSheet.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -21,16 +22,6 @@
                 </a>
             </li>
             <li>
-                <a href="@Url.Action("Login", "Home")">
-                    Log In
-                </a>
-            </li>
-            <li>
-                <a href="@Url.Action("Signup", "Home")">
-                    Sign Up
-                </a>
-            </li>
-            <li>
                 <a href="@Url.Action("Events", "Home")">
                     Events
                 </a>
@@ -38,6 +29,19 @@
             <li>
                 <a href="@Url.Action("AdministrationPortal", "Home")">
                     Administration Portal
+                </a>
+            </li>
+            
+        </ul>
+        <ul class="nav navbar-nav navbar-right" style="margin-right: auto">
+            <li>
+                <a href="@Url.Action("Login", "Home")">
+                    Log In
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Signup", "Home")">
+                    Sign Up
                 </a>
             </li>
         </ul>

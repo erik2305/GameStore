@@ -12,18 +12,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.GameStatusCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GameCategoryId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GameSubCategoryId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EsrbRatingCode)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.EnglishName)
         </th>
         <th>
@@ -37,9 +25,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FrenchPlayerCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GamePerspectiveCode)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.EnglishTrailer)
@@ -62,23 +47,26 @@
         <th>
             @Html.DisplayNameFor(model => model.UserName)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EsrbRating.EnglishRating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GameCategory.EnglishCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GamePerspective.EnglishPerspectiveName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GameStatu.EnglishCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GameSubCategory.EnglishCategory)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.GameStatusCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GameCategoryId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GameSubCategoryId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EsrbRatingCode)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.EnglishName)
         </td>
@@ -93,9 +81,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FrenchPlayerCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GamePerspectiveCode)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.EnglishTrailer)
@@ -117,6 +102,21 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EsrbRating.EnglishRating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GameCategory.EnglishCategory)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GamePerspective.EnglishPerspectiveName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GameStatu.EnglishCategory)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GameSubCategory.EnglishCategory)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Guid }) |
