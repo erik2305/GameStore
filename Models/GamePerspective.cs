@@ -11,8 +11,7 @@ namespace GameStore.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class GamePerspective
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,12 +19,9 @@ namespace GameStore.Models
         {
             this.Games = new HashSet<Game>();
         }
-
-        [DisplayName("POV")]
+    
         public string Code { get; set; }
-        [DisplayName("POV")]
         public string EnglishPerspectiveName { get; set; }
-        [DisplayName("POV")]
         public string FrenchPerspectiveName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

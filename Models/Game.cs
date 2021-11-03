@@ -11,9 +11,7 @@ namespace GameStore.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Game
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,57 +20,24 @@ namespace GameStore.Models
             this.GameEsrbContentDescriptors = new HashSet<GameEsrbContentDescriptor>();
             this.Products = new HashSet<Product>();
         }
-        [ScaffoldColumn(false)]
-        [Required]
+    
         public System.Guid Guid { get; set; }
-        [Required]
-        [DisplayName("Availability")]
         public string GameStatusCode { get; set; }
-        [Required]
-        [DisplayName("Category")]
         public int GameCategoryId { get; set; }
-        [DisplayName("Sub Category")]
         public Nullable<int> GameSubCategoryId { get; set; }
-        [Required]
-        [DisplayName("ESRB")]
         public string EsrbRatingCode { get; set; }
-        [Required]
-        [DisplayName("English Name")]
         public string EnglishName { get; set; }
-        [Required]
-        [DisplayName("French Name")]
         public string FrenchName { get; set; }
-        [Required]
-        [DisplayName("French?")]
         public bool FrenchVersion { get; set; }
-        [Required]
-        [DisplayName("Player Count")]
         public string EnglishPlayerCount { get; set; }
-        [ScaffoldColumn(false)]
         public string FrenchPlayerCount { get; set; }
-        [Required]
-        [DisplayName("POV")]
         public string GamePerspectiveCode { get; set; }
-        [Required]
-        [DisplayName("English Trailer")]
         public string EnglishTrailer { get; set; }
-        [Required]
-        [DisplayName("French Trailer")]
         public string FrenchTrailer { get; set; }
-        [Required]
-        [DisplayName("English Description")]
         public string EnglishDescription { get; set; }
-        [Required]
-        [DisplayName("French Description")]
         public string FrenchDescription { get; set; }
-        [Required]
-        [DisplayName("English Detail")]
         public string EnglishDetail { get; set; }
-        [Required]
-        [DisplayName("French Detail")]
         public string FrenchDetail { get; set; }
-        [Required]
-        [DisplayName("Submitter")]
         public string UserName { get; set; }
         public virtual EsrbRating EsrbRating { get; set; }
         public virtual GameCategory GameCategory { get; set; }
