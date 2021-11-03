@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\Users\peter\Documents\conestoga\fall2021\prog3050\repos\GameStore\Models\CVGS_Tables.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\danie\Source\Repos\GameStore\Signup.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

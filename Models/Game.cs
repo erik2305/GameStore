@@ -14,13 +14,6 @@ namespace GameStore.Models
     
     public partial class Game
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Game()
-        {
-            this.GameEsrbContentDescriptors = new HashSet<GameEsrbContentDescriptor>();
-            this.Products = new HashSet<Product>();
-        }
-    
         public System.Guid Guid { get; set; }
         public string GameStatusCode { get; set; }
         public int GameCategoryId { get; set; }
@@ -39,14 +32,5 @@ namespace GameStore.Models
         public string EnglishDetail { get; set; }
         public string FrenchDetail { get; set; }
         public string UserName { get; set; }
-        public virtual EsrbRating EsrbRating { get; set; }
-        public virtual GameCategory GameCategory { get; set; }
-        public virtual GamePerspective GamePerspective { get; set; }
-        public virtual GameStatu GameStatu { get; set; }
-        public virtual GameSubCategory GameSubCategory { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GameEsrbContentDescriptor> GameEsrbContentDescriptors { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
     }
 }
