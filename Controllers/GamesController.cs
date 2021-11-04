@@ -52,10 +52,20 @@ namespace GameStore.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Guid,GameStatusCode,GameCategoryId,GameSubCategoryId,EsrbRatingCode,EnglishName,FrenchName,FrenchVersion,EnglishPlayerCount,FrenchPlayerCount,GamePerspectiveCode,EnglishTrailer,FrenchTrailer,EnglishDescription,FrenchDescription,EnglishDetail,FrenchDetail,UserName")] Game game)
+        public ActionResult Create([Bind(Include = "Guid,GameStatusCode,GameCategoryId,GameSubCategoryId,EsrbRatingCode," +
+            "EnglishName,FrenchName,FrenchVersion,EnglishPlayerCount,FrenchPlayerCount,GamePerspectiveCode," +
+            "EnglishTrailer,FrenchTrailer,EnglishDescription,FrenchDescription,EnglishDetail,FrenchDetail,UserName")] Game game)
         {
             if (ModelState.IsValid)
             {
+                if (!game.FrenchVersion)
+                {
+                    game.FrenchName = "";
+                    game.FrenchPlayerCount = "0";
+                    game.FrenchTrailer = "";
+                    game.FrenchDescription = "";
+                    game.FrenchDetail = "";
+                }
                 game.Guid = Guid.NewGuid();
                 db.Games.Add(game);
                 db.SaveChanges();
@@ -99,6 +109,14 @@ namespace GameStore.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (!game.FrenchVersion)
+                {
+                    game.FrenchName = "";
+                    game.FrenchPlayerCount = "0";
+                    game.FrenchTrailer = "";
+                    game.FrenchDescription = "";
+                    game.FrenchDetail = "";
+                }
                 db.Entry(game).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

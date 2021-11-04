@@ -37,9 +37,10 @@ namespace GameStore.Models
         [DisplayName("ESRB")]
         public string EsrbRatingCode { get; set; }
         [Required]
+        [MaxLength(50, ErrorMessage = "Name cannot exceed 50 characters")]
         [DisplayName("English Name")]
         public string EnglishName { get; set; }
-        [Required]
+        [FrenchVersion("French Name")]
         [DisplayName("French Name")]
         public string FrenchName { get; set; }
         [Required]
@@ -54,21 +55,22 @@ namespace GameStore.Models
         [DisplayName("POV")]
         public string GamePerspectiveCode { get; set; }
         [Required]
+        [YouTubeTrailer(FieldName = "English Trailer")]
         [DisplayName("English Trailer")]
         public string EnglishTrailer { get; set; }
-        [Required]
+        [FrenchVersion("French Trailer")]
         [DisplayName("French Trailer")]
         public string FrenchTrailer { get; set; }
         [Required]
         [DisplayName("English Description")]
         public string EnglishDescription { get; set; }
-        [Required]
+        [FrenchVersion("French Description")]
         [DisplayName("French Description")]
         public string FrenchDescription { get; set; }
         [Required]
         [DisplayName("English Detail")]
         public string EnglishDetail { get; set; }
-        [Required]
+        [FrenchVersion("French Detail")]
         [DisplayName("French Detail")]
         public string FrenchDetail { get; set; }
         [Required]
