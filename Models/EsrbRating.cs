@@ -24,7 +24,9 @@ namespace GameStore.Models
         [Required]
         [DisplayName("ESRB")]
         public string Code { get; set; }
+        [DisplayName("ESRB")]
         public string EnglishRating { get; set; }
+        [DisplayName("ESRB")]
         public string FrenchRating { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
