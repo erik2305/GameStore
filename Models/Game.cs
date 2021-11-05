@@ -16,6 +16,10 @@ namespace GameStore.Models
 
     public partial class Game
     {
+        // better youtube checker 
+        // https://webapps.stackexchange.com/questions/13854/are-youtube-codes-guaranteed-to-always-be-11-characters
+        private const string youtubeRegex = @"^(https:\/\/www\.youtube\.com\/watch\?v=\w+)|^(https:\/\/www\.youtube\.com\/embed\/\w+)|^(https:\/\/youtu\.be\/\w+)";
+        
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Game()
         {
@@ -26,6 +30,7 @@ namespace GameStore.Models
         [Required]
         public System.Guid Guid { get; set; }
         [Required]
+        [RegularExpression("A|D|P", ErrorMessage = "Game must availability must be selected.")]
         [DisplayName("Availability")]
         public string GameStatusCode { get; set; }
         [Required]
@@ -38,6 +43,7 @@ namespace GameStore.Models
         public string EsrbRatingCode { get; set; }
         [Required]
         [MaxLength(50, ErrorMessage = "Name cannot exceed 50 characters")]
+        [MinLength(2, ErrorMessage = "Name must be at least 2 characters")]
         [DisplayName("English Name")]
         public string EnglishName { get; set; }
         [FrenchVersion("French Name")]
@@ -55,10 +61,11 @@ namespace GameStore.Models
         [DisplayName("POV")]
         public string GamePerspectiveCode { get; set; }
         [Required]
-        [YouTubeTrailer(FieldName = "English Trailer")]
+        [RegularExpression(pattern: youtubeRegex, ErrorMessage = "Youtube links only please")]
         [DisplayName("English Trailer")]
         public string EnglishTrailer { get; set; }
         [FrenchVersion("French Trailer")]
+        [RegularExpression(pattern: youtubeRegex, ErrorMessage = "Youtube links only please")]
         [DisplayName("French Trailer")]
         public string FrenchTrailer { get; set; }
         [Required]

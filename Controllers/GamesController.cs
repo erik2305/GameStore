@@ -14,6 +14,8 @@ namespace GameStore.Controllers
     {
         private CVGS_Tables db = new CVGS_Tables();
 
+        public GamesController() { }
+
         // GET: Games
         public ActionResult Index()
         {
