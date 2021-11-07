@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using GameStore.Models;
@@ -13,6 +14,9 @@ namespace GameStore.Controllers
     public class GamesController : Controller
     {
         private CVGS_Tables db = new CVGS_Tables();
+        private System.Text.RegularExpressions.Regex NotYoutubeRegex =
+            new System.Text.RegularExpressions.Regex (Validators.MyRegex.NotYoutubeRegex);
+        private string youtubeViewLink = "https://www.youtube.com/watch?v=";
 
         public GamesController() { }
 
@@ -35,6 +39,11 @@ namespace GameStore.Controllers
             {
                 return HttpNotFound();
             }
+            if (game.FrenchVersion && game.FrenchTrailer != null)
+            {
+                game.FrenchTrailer = Regex.Replace(game.FrenchTrailer, Validators.MyRegex.NotYoutubeRegex, "");
+            }
+            game.EnglishTrailer = Regex.Replace(game.EnglishTrailer, Validators.MyRegex.NotYoutubeRegex, "");
             return View(game);
         }
 
@@ -60,6 +69,7 @@ namespace GameStore.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 if (!game.FrenchVersion)
                 {
                     game.FrenchName = "";
@@ -94,6 +104,11 @@ namespace GameStore.Controllers
             {
                 return HttpNotFound();
             }
+            if (game.FrenchVersion && game.FrenchTrailer != null)
+            {
+                game.FrenchTrailer = Regex.Replace(game.FrenchTrailer, Validators.MyRegex.NotYoutubeRegex, "https://www.youtube.com/watch?v=");
+            }
+            game.EnglishTrailer = Regex.Replace(game.EnglishTrailer, Validators.MyRegex.NotYoutubeRegex, "https://www.youtube.com/watch?v=");
             ViewBag.EsrbRatingCode = new SelectList(db.EsrbRatings, "Code", "EnglishRating", game.EsrbRatingCode);
             ViewBag.GameCategoryId = new SelectList(db.GameCategories, "Id", "EnglishCategory", game.GameCategoryId);
             ViewBag.GamePerspectiveCode = new SelectList(db.GamePerspectives, "Code", "EnglishPerspectiveName", game.GamePerspectiveCode);

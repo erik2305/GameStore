@@ -272,8 +272,8 @@
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validators\YouTubeTrailerAttribute.cs" />
     <Compile Include="Validators\FrenchVersionAttribute.cs" />
+    <Compile Include="Validators\MyRegex.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

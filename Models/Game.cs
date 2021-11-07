@@ -9,6 +9,7 @@
 
 namespace GameStore.Models
 {
+    using GameStore.Validators;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -61,11 +62,11 @@ namespace GameStore.Models
         [DisplayName("POV")]
         public string GamePerspectiveCode { get; set; }
         [Required]
-        [RegularExpression(pattern: youtubeRegex, ErrorMessage = "Youtube links only please")]
+        [RegularExpression(pattern: MyRegex.NotYoutubeRegex, ErrorMessage = "Youtube links only please")]
         [DisplayName("English Trailer")]
         public string EnglishTrailer { get; set; }
         [FrenchVersion("French Trailer")]
-        [RegularExpression(pattern: youtubeRegex, ErrorMessage = "Youtube links only please")]
+        [RegularExpression(pattern: MyRegex.NotYoutubeRegex, ErrorMessage = "Youtube links only please")]
         [DisplayName("French Trailer")]
         public string FrenchTrailer { get; set; }
         [Required]
