@@ -40,13 +40,24 @@ namespace GameStore.Controllers
             {
                 using (CVGS_Tables db = new CVGS_Tables())
                 {
+                    U.Id = 10;
+                    U.Password = "peterpeter";
                     var check = db.People.FirstOrDefault(s => s.Email == U.Email);
                     if (check == null)
                     {
                         U.Password = GetMD5(U.Password);
+                        U.ProvinceCode = "ON";
+                        U.Street = "Frank";
+                        U.City = "Frank";
+                        U.CountryCode = "ABW";
+                        
                         db.Configuration.ValidateOnSaveEnabled = false;
                         db.People.Add(U);
-                        db.SaveChanges();
+                        try
+                        {
+                            db.SaveChanges();
+                        }
+                        catch (Exception e) { }
                         return RedirectToAction("Index");
                     }
                     else

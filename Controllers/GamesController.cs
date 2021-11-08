@@ -14,16 +14,21 @@ namespace GameStore.Controllers
     public class GamesController : Controller
     {
         private CVGS_Tables db = new CVGS_Tables();
+        /*
         private System.Text.RegularExpressions.Regex NotYoutubeRegex =
             new System.Text.RegularExpressions.Regex (Validators.MyRegex.NotYoutubeRegex);
         private string youtubeViewLink = "https://www.youtube.com/watch?v=";
-
+        */
         public GamesController() { }
 
         // GET: Games
         public ActionResult Index()
         {
-            var games = db.Games.Include(g => g.EsrbRating).Include(g => g.GameCategory).Include(g => g.GamePerspective).Include(g => g.GameStatu).Include(g => g.GameSubCategory);
+            var games = db.Games.Include(g => g.EsrbRating)
+                                .Include(g => g.GameCategory)
+                                .Include(g => g.GamePerspective)
+                                .Include(g => g.GameStatu)
+                                .Include(g => g.GameSubCategory);
             return View(games.ToList());
         }
 
