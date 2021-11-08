@@ -28,6 +28,10 @@ namespace GameStore.Controllers
         {
             return View();
         }
+        public ActionResult Register()
+        {
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(Person U)
@@ -95,7 +99,7 @@ namespace GameStore.Controllers
         }
 
         [HttpPost]
-        public ActionResult Authorize(GameStore.Models.Person personModel)
+        public ActionResult Authorize(Person personModel)
         {
             using (CVGS_Tables db = new CVGS_Tables())
             {
