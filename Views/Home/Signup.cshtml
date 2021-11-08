@@ -1,4 +1,69 @@
-﻿@{
+﻿@model GameStore.Models.Person
+@{
     ViewBag.Title = "Signup";
 }
 <h3>@ViewBag.Message</h3>
+
+<head></head>
+
+@using (Html.BeginForm("Register", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken();
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title"><h4><b>Register</b></h4></div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                @Html.LabelFor(m => m.GivenName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.GivenName)
+                    @Html.ValidationMessageFor(m => m.GivenName)
+                 </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Surname, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.Surname)
+                    @Html.ValidationMessageFor(m => m.Surname)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.Email)
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+                @if (ViewBag.error != null)
+                {
+                    <span class="badge badge-danger">@ViewBag.error</span>
+                }
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.UserName, new {@class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.UserName)
+                    @Html.ValidationMessageFor(m => m.UserName)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.Password)
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.ConfirmPassword)
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Sign up" />
+            </div>
+        </div>
+    </div>
+
+}
