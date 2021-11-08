@@ -34,7 +34,7 @@ namespace GameStore.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(Person U)
+        public ActionResult Signup(Person U)
         {
             if(ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace GameStore.Controllers
         }
 
         [HttpPost]
-        public ActionResult Authorize(Person personModel)
+        public ActionResult Login(Person personModel)
         {
             using (CVGS_Tables db = new CVGS_Tables())
             {

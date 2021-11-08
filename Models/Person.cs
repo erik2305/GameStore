@@ -18,6 +18,7 @@ namespace GameStore.Models
     {
         public int Id { get; set; }
         public string Surname { get; set; }
+        [DisplayName("First Name")]
         public string GivenName { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
@@ -30,8 +31,8 @@ namespace GameStore.Models
         public string Fax { get; set; }
         [Required(ErrorMessage = "Input Email", AllowEmptyStrings = false)]
         public string Email { get; set; }
-        [DisplayName("User Name")]
         [Required(ErrorMessage ="Input User name", AllowEmptyStrings = false)]
+        [DisplayName("User Name")]
         public string UserName { get; set; }
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Input Password", AllowEmptyStrings = false)]
