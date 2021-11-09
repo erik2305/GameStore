@@ -1,13 +1,11 @@
 ﻿@model GameStore.Models.Game
 
 @{
-    ViewBag.Title = Html.DisplayFor(model => model.EnglishName);
+    ViewBag.Title = "Admin - Details " + Html.DisplayFor(model => model.EnglishName);
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>@Html.DisplayFor(model => model.EnglishName)</h4>
+    <h3>@Html.DisplayFor(model => model.EnglishName) Details</h3>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -51,14 +49,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EnglishPlayerCount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EnglishPlayerCount)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.GamePerspective.EnglishPerspectiveName)
         </dt>
 
@@ -71,7 +61,7 @@
         </dt>
 
         <dd>
-            <iframe width="560" height="315" src="@Model.EnglishTrailer" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/@Model.EnglishTrailer" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </dd>
 
         <dt>
@@ -115,7 +105,7 @@
         </dt>
 
         <dd>
-            <iframe width="560" height="315" src="@Html.DisplayFor(model => model.FrenchTrailer)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/@Html.DisplayFor(model => model.FrenchTrailer)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </dd>
 
         <dt>
@@ -135,10 +125,8 @@
         </dd>
 
     </dl>
-
-    <hr />
-
 </div>
+
 <p>
-    @Html.ActionLink("Return to the store", "Index")
+    @Html.ActionLink("Return to the store", "Index", "Home")
 </p>
