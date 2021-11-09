@@ -123,6 +123,7 @@ namespace GameStore.Controllers
                 }
                 else
                 {
+                    Response.Write("<script language=javascript>alert('You are now logged in')</script>");
                     Session["userId"] = userDetails.Id;
                     return RedirectToAction("Index", "Home");
                 }
