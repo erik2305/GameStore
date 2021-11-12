@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<GameStore.Models.Game>
+@{
     ViewBag.Title = "Home Page";
 }
 <head>
@@ -9,33 +10,126 @@
         <h1>Store First Page</h1>
 
     </div>
+    <form asp-controller="Home" asp-action="Index" method="get">
+        <p>
+            Title: <input type="text" name="search" />
+            <input type="submit" value="Search" />
+        </p>
+    </form>
+    @if (Model.Count() == 27)
+    {
+        <div class="row">
+            <table>
+                <tr>
+                    <td>
+                        <a class="zoom" href="@Url.Action("GameInfo", "GameId", new { id = new Guid("31ECA070-E174-11DD-AD8B-0800200C9A66") })">
+                            <img src="~/Content/Images/FinalFantasy4.jpg" alt="Final Fantasy 4">
+                        </a>
+                    </td>
+                    <td>
+                        <a class="zoom" href="@Url.Action("GameInfo", "GameId", new {id = new Guid("D4BF60E0-E178-11DD-AD8B-0800200C9A66")})">
+                            <img src="~/Content/Images/NHL09.jpg" alt="NHL 09">
+                        </a>
+                    </td>
+                    <td>
+                        <a class="zoom" href="@Url.Action("GameInfo", "GameId", new {id = new Guid("9F080480-E17C-11DD-AD8B-0800200C9A66")})">
+                            <img src="~/Content/Images/Fallout3.jpg" alt="Fallout 3">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a class="zoom" href="@Url.Action("GameInfo", "GameId", new {id = new Guid("9AAF8CE2-88EC-4813-97AA-0B4420DDF970")})">
+                            <img src="~/Content/Images/TombRaiderUW.jpg" alt="Tomb Raider: Under World">
+                        </a>
+                    </td>
+                    <td>
+                        <a class="zoom" href="@Url.Action("GameInfo", "GameId", new {id = new Guid("378B6FB9-3966-4F3A-8BC9-1760E8A93023")})">
+                            <img src="~/Content/Images/CoDWaW.jpg" alt="Call of Duty: World at War">
+                        </a>
+                    </td>
+                    <td>
+                        <a class="zoom" href="@Url.Action("GameInfo", "GameId", new {id = new Guid("F8A4D87B-2A5C-42D8-98FE-197A79EA7031")})">
+                            <img src="~/Content/Images/RainbowSixV2.jpg" alt="RainbowSix: Vegas 2">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+    else
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.EnglishName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FrenchVersion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GameStatu.EnglishCategory)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EsrbRating.EnglishRating)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GamePerspective.EnglishPerspectiveName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GameCategory.EnglishCategory)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GameSubCategory.EnglishCategory)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EnglishPlayerCount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th></th>
+            </tr>
 
-    <div class="row">
-        <table>
-            <tr>
-                <td><a class="zoom" href="@Url.Action("GameInfo", "GameId", new {id = new Guid("31ECA070-E174-11DD-AD8B-0800200C9A66")})">
-                    <img src="~/Content/Images/FinalFantasy4.jpg" alt="Final Fantasy 4"></a>
-                </td>
-                <td>
-                    <a class="zoom" href="@Url.Action("GameInfo", "GameId", new {id = new Guid("D4BF60E0-E178-11DD-AD8B-0800200C9A66")})">
-                        <img src="~/Content/Images/NHL09.jpg" alt="NHL 09">
-                    </a>
-                </td>
-                <td><a class="zoom" href="@Url.Action("GameInfo", "GameId", new {id = new Guid("9F080480-E17C-11DD-AD8B-0800200C9A66")})">
-                    <img src="~/Content/Images/Fallout3.jpg" alt="Fallout 3"></a>
-                </td>
-            </tr>
-            <tr>
-                <td><a class="zoom" href="@Url.Action("GameInfo", "GameId", new {id = new Guid("9AAF8CE2-88EC-4813-97AA-0B4420DDF970")})">
-                    <img src="~/Content/Images/TombRaiderUW.jpg" alt="Tomb Raider: Under World"></a>
-                </td>
-                <td><a class="zoom" href="@Url.Action("GameInfo", "GameId", new {id = new Guid("378B6FB9-3966-4F3A-8BC9-1760E8A93023")})">
-                    <img src="~/Content/Images/CoDWaW.jpg" alt="Call of Duty: World at War"></a>
-                </td>
-                <td><a class="zoom" href="@Url.Action("GameInfo", "GameId", new {id = new Guid("F8A4D87B-2A5C-42D8-98FE-197A79EA7031")})">
-                    <img src="~/Content/Images/RainbowSixV2.jpg" alt="RainbowSix: Vegas 2"></a>
-                </td>
-            </tr>
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnglishName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FrenchVersion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameStatu.EnglishCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EsrbRating.EnglishRating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GamePerspective.EnglishPerspectiveName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameCategory.EnglishCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GameSubCategory.EnglishCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnglishPlayerCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                <a href="@Url.Action("GameInfo", "GameId", new  { id = item.Guid })">
+                    Details
+                </a>
+            </td>
+        </tr>
+            }
+
         </table>
-    </div>
+    }
+
 </body>
