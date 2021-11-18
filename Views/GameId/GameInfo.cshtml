@@ -1,13 +1,11 @@
 ﻿@model GameStore.Models.Game
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Admin - Details " + Html.DisplayFor(model => model.EnglishName);
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Game</h4>
+    <h3>@Html.DisplayFor(model => model.EnglishName) Details</h3>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -19,91 +17,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FrenchName)
+            @Html.DisplayNameFor(model => model.GameStatu.EnglishCategory)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FrenchName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FrenchVersion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FrenchVersion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EnglishPlayerCount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EnglishPlayerCount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FrenchPlayerCount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FrenchPlayerCount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EnglishTrailer)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EnglishTrailer)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FrenchTrailer)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FrenchTrailer)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EnglishDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EnglishDescription)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FrenchDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FrenchDescription)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EnglishDetail)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EnglishDetail)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FrenchDetail)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FrenchDetail)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
+            @Html.DisplayFor(model => model.GameStatu.EnglishCategory)
         </dd>
 
         <dt>
@@ -123,6 +41,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.GameSubCategory.EnglishCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameSubCategory.EnglishCategory)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.GamePerspective.EnglishPerspectiveName)
         </dt>
 
@@ -131,24 +57,76 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.GameStatu.EnglishCategory)
+            @Html.DisplayNameFor(model => model.EnglishTrailer)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.GameStatu.EnglishCategory)
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/@Model.EnglishTrailer" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.GameSubCategory.EnglishCategory)
+            @Html.DisplayNameFor(model => model.EnglishDescription)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.GameSubCategory.EnglishCategory)
+            @Html.DisplayFor(model => model.EnglishDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EnglishDetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnglishDetail)
+        </dd>
+    </dl>
+
+    <hr />
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FrenchVersion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrenchVersion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FrenchName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrenchName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FrenchTrailer)
+        </dt>
+
+        <dd>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/@Html.DisplayFor(model => model.FrenchTrailer)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FrenchDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrenchDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FrenchDetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrenchDetail)
         </dd>
 
     </dl>
 </div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Guid }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Return to the store", "Index", "Home")
 </p>
