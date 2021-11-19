@@ -12,7 +12,9 @@ namespace GameStore.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
+    [MetadataType(typeof(MetaGameSubCategory))]
     public partial class GameSubCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

@@ -15,7 +15,7 @@ namespace GameStore.Models
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class Game
+    public partial class Game : IGame
     {
         // better youtube checker 
         // https://webapps.stackexchange.com/questions/13854/are-youtube-codes-guaranteed-to-always-be-11-characters

@@ -231,6 +231,8 @@
     <Compile Include="Models\GameSubCategory.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\IEsrbRating.cs" />
+    <Compile Include="Models\IGame.cs" />
     <Compile Include="Models\Inventory.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
@@ -240,6 +242,11 @@
     <Compile Include="Models\LocationType.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\IGameCategory.cs" />
+    <Compile Include="Models\MetaGamePerspective.cs" />
+    <Compile Include="Models\MetaGameStatu.cs" />
+    <Compile Include="Models\MetaGameSubCategory.cs" />
+    <Compile Include="Models\IPerson.cs" />
     <Compile Include="Models\Person.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
