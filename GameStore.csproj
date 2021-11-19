@@ -75,6 +75,7 @@
       <HintPath>packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
@@ -168,6 +169,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AttendeeList.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cart.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Country.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
@@ -207,7 +214,13 @@
     <Compile Include="Models\EsrbRating.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Event.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EventLog.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Friend.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Game.cs">
@@ -233,20 +246,20 @@
     </Compile>
     <Compile Include="Models\IEsrbRating.cs" />
     <Compile Include="Models\IGame.cs" />
+    <Compile Include="Models\IGameCategory.cs" />
+    <Compile Include="Models\IGamePerspective.cs" />
+    <Compile Include="Models\IGameStatu.cs" />
+    <Compile Include="Models\IGameSubCategory.cs" />
     <Compile Include="Models\Inventory.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\IPerson.cs" />
     <Compile Include="Models\Location.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LocationType.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\IGameCategory.cs" />
-    <Compile Include="Models\MetaGamePerspective.cs" />
-    <Compile Include="Models\MetaGameStatu.cs" />
-    <Compile Include="Models\MetaGameSubCategory.cs" />
-    <Compile Include="Models\IPerson.cs" />
     <Compile Include="Models\Person.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
@@ -269,6 +282,9 @@
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Report.cs" />
+    <Compile Include="Models\Review.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Sku.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
@@ -276,6 +292,9 @@
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SupplierContact.cs">
+      <DependentUpon>CVGS_Tables.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Wishlist.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -305,6 +324,12 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Web.config" />
+    <Content Include="Views\Games\Create.cshtml" />
+    <Content Include="Views\Games\Delete.cshtml" />
+    <Content Include="Views\Games\Details.cshtml" />
+    <Content Include="Views\Games\Edit.cshtml" />
+    <Content Include="Views\Games\Index.cshtml" />
+    <Content Include="Views\GameId\GameInfo.cshtml" />
     <EntityDeploy Include="Models\CVGS_Tables.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CVGS_Tables.Designer.cs</LastGenOutput>
@@ -312,12 +337,6 @@
     <Content Include="Models\CVGS_Tables.edmx.diagram">
       <DependentUpon>CVGS_Tables.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\Games\Create.cshtml" />
-    <Content Include="Views\Games\Delete.cshtml" />
-    <Content Include="Views\Games\Details.cshtml" />
-    <Content Include="Views\Games\Edit.cshtml" />
-    <Content Include="Views\Games\Index.cshtml" />
-    <Content Include="Views\GameId\GameInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -356,6 +375,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

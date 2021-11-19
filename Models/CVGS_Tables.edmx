@@ -4,7 +4,23 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CVGS_TableModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CVGS_Tables.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AttendeeList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="eventId" Type="int" Nullable="false" />
+          <Property Name="personId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="personId" Type="int" Nullable="false" />
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="Code" />
@@ -79,6 +95,18 @@
           <Property Name="EnglishRating" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="FrenchRating" Type="nvarchar" MaxLength="30" Nullable="false" />
         </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateStart" Type="datetime" />
+          <Property Name="dateEnd" Type="datetime" />
+          <Property Name="attendeeList" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="300" />
+          <Property Name="location" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="EventLog">
           <Key>
             <PropertyRef Name="Guid" />
@@ -88,6 +116,14 @@
           <Property Name="Category" Type="nchar" MaxLength="11" Nullable="false" />
           <Property Name="Event" Type="nvarchar" MaxLength="6" />
           <Property Name="Detail" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="Friend">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="personOneId" Type="int" Nullable="false" />
+          <Property Name="personTwoId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Game">
           <Key>
@@ -219,6 +255,7 @@
           <Property Name="Fax" Type="nvarchar" MaxLength="22" />
           <Property Name="Email" Type="nvarchar" MaxLength="60" />
           <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Platform">
           <Key>
@@ -311,6 +348,16 @@
           <Property Name="EnglishName" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="FrenchName" Type="nvarchar" MaxLength="30" Nullable="false" />
         </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="personId" Type="int" Nullable="false" />
+          <Property Name="reviewContent" Type="nvarchar" MaxLength="300" />
+          <Property Name="score" Type="int" Nullable="false" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Sku">
@@ -350,6 +397,14 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <Property Name="Email" Type="nvarchar" MaxLength="60" />
           <Property Name="Note" Type="nvarchar" MaxLength="4000" />
           <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Wishlist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="personId" Type="int" Nullable="false" />
+          <Property Name="Guid" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <Association Name="Employee_Department_FK">
           <End Role="Department" Type="Self.Department" Multiplicity="1" />
@@ -408,6 +463,114 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttendeeList_Event1">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="AttendeeList" Type="Self.AttendeeList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AttendeeList">
+              <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttendeeList_Person1">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="AttendeeList" Type="Self.AttendeeList" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AttendeeList">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Game">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Guid" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="Guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Friend_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Friend" Type="Self.Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="personTwoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_Cart">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="personId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personCart_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Wishlist" Type="Self.Wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Wishlist">
+              <PropertyRef Name="personId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personOne_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Friend" Type="Self.Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="personOneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Review_Game1">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Guid" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="Guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wishlist_Game">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="Wishlist" Type="Self.Wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Guid" />
+            </Principal>
+            <Dependent Role="Wishlist">
+              <PropertyRef Name="Guid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -711,96 +874,9 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="EmployeeInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="personSurname" Type="nvarchar" Mode="In" />
-          <Parameter Name="personGivenName" Type="nvarchar" Mode="In" />
-          <Parameter Name="personStreet" Type="nvarchar" Mode="In" />
-          <Parameter Name="personCity" Type="nvarchar" Mode="In" />
-          <Parameter Name="personProvinceCode" Type="nchar" Mode="In" />
-          <Parameter Name="personCountryCode" Type="nchar" Mode="In" />
-          <Parameter Name="personPostalCode" Type="nvarchar" Mode="In" />
-          <Parameter Name="personLandLine" Type="nvarchar" Mode="In" />
-          <Parameter Name="personExtension" Type="nvarchar" Mode="In" />
-          <Parameter Name="personMobile" Type="nvarchar" Mode="In" />
-          <Parameter Name="personFax" Type="nvarchar" Mode="In" />
-          <Parameter Name="personEmail" Type="nvarchar" Mode="In" />
-          <Parameter Name="employeeGln" Type="nchar" Mode="In" />
-          <Parameter Name="employeePositionCode" Type="nchar" Mode="In" />
-          <Parameter Name="employeePayCategoryCode" Type="nchar" Mode="In" />
-          <Parameter Name="employeeDepartmentCode" Type="nchar" Mode="In" />
-          <Parameter Name="employeeBirthDate" Type="datetime" Mode="In" />
-          <Parameter Name="employeeHireDate" Type="datetime" Mode="In" />
-          <Parameter Name="employeeTerminationDate" Type="datetime" Mode="In" />
-          <Parameter Name="employeeNote" Type="nvarchar" Mode="In" />
-          <Parameter Name="userName" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="GameCompanyCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="rowCount" Type="int" Mode="InOut" />
-          <Parameter Name="id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="GameCompanyDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="GameCompanyImport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-          <Parameter Name="englishName" Type="nvarchar" Mode="In" />
-          <Parameter Name="frenchName" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="GameCompanyInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="englishName" Type="nvarchar" Mode="In" />
-          <Parameter Name="frenchName" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="GameCompanyUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id" Type="int" Mode="In" />
-          <Parameter Name="englishName" Type="nvarchar" Mode="In" />
-          <Parameter Name="frenchName" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="InventoryCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="rowCount" Type="int" Mode="InOut" />
-          <Parameter Name="productGuid" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="locationGln" Type="nchar" Mode="In" />
-        </Function>
-        <Function Name="InventoryDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="productGuid" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="locationGln" Type="nchar" Mode="In" />
-        </Function>
-        <Function Name="InventoryImport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="productGuid" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="locationGln" Type="nchar" Mode="In" />
-          <Parameter Name="newOnHand" Type="smallint" Mode="In" />
-          <Parameter Name="newOnOrder" Type="smallint" Mode="In" />
-          <Parameter Name="usedOnHand" Type="smallint" Mode="In" />
-          <Parameter Name="userName" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="InventoryInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="productGuid" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="locationGln" Type="nchar" Mode="In" />
-          <Parameter Name="newOnHand" Type="smallint" Mode="In" />
-          <Parameter Name="newOnOrder" Type="smallint" Mode="In" />
-          <Parameter Name="usedOnHand" Type="smallint" Mode="In" />
-          <Parameter Name="userName" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="InventoryUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="productGuid" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="locationGln" Type="nchar" Mode="In" />
-          <Parameter Name="newOnHand" Type="smallint" Mode="In" />
-          <Parameter Name="newOnOrder" Type="smallint" Mode="In" />
-          <Parameter Name="usedOnHand" Type="smallint" Mode="In" />
-          <Parameter Name="userName" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="LogAlert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="event" Type="nchar" Mode="In" />
-          <Parameter Name="detail" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="LogError" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="event" Type="nchar" Mode="In" />
-          <Parameter Name="detail" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="LogInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="event" Type="nchar" Mode="In" />
-          <Parameter Name="detail" Type="nvarchar" Mode="In" />
-        </Function>
-        <EntityContainer Name="CVGS_TableModelStoreContainer">
+        <EntityContainer Name="CVGS_TablesStoreContainer">
+          <EntitySet Name="AttendeeList" EntityType="Self.AttendeeList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CreditCard" EntityType="Self.CreditCard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
@@ -809,7 +885,9 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <EntitySet Name="EmployeePosition" EntityType="Self.EmployeePosition" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EsrbContentDescriptor" EntityType="Self.EsrbContentDescriptor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EsrbRating" EntityType="Self.EsrbRating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventLog" EntityType="Self.EventLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Friend" EntityType="Self.Friend" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GameCategory" EntityType="Self.GameCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GameCompany" EntityType="Self.GameCompany" Schema="dbo" store:Type="Tables" />
@@ -827,8 +905,10 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SupplierContact" EntityType="Self.SupplierContact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Wishlist" EntityType="Self.Wishlist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sku" EntityType="Self.Sku" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Sku].[Number] AS [Number]
@@ -853,6 +933,42 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <AssociationSet Name="Employee_Person_FK" Association="Self.Employee_Person_FK">
             <End Role="Person" EntitySet="Person" />
             <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttendeeList_Event1" Association="Self.FK_AttendeeList_Event1">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="AttendeeList" EntitySet="AttendeeList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttendeeList_Person1" Association="Self.FK_AttendeeList_Person1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="AttendeeList" EntitySet="AttendeeList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Game" Association="Self.FK_Cart_Game">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Friend_Person" Association="Self.FK_Friend_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Friend" EntitySet="Friend" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_Cart" Association="Self.FK_Person_Cart">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personCart_Person" Association="Self.FK_personCart_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Wishlist" EntitySet="Wishlist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personOne_Person" Association="Self.FK_personOne_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Friend" EntitySet="Friend" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Review_Game1" Association="Self.FK_Review_Game1">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wishlist_Game" Association="Self.FK_Wishlist_Game">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="Wishlist" EntitySet="Wishlist" />
           </AssociationSet>
           <AssociationSet Name="Game_EsrbRating_FK" Association="Self.Game_EsrbRating_FK">
             <End Role="EsrbRating" EntitySet="EsrbRating" />
@@ -959,7 +1075,27 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CVGS_TableModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="CVGS_Tables" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AttendeeList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="eventId" Type="Int32" Nullable="false" />
+          <Property Name="personId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_AttendeeList_Event1" FromRole="AttendeeList" ToRole="Event" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_AttendeeList_Person1" FromRole="AttendeeList" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="personId" Type="Int32" Nullable="false" />
+          <Property Name="Guid" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Game" Relationship="Self.FK_Cart_Game" FromRole="Cart" ToRole="Game" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Person_Cart" FromRole="Cart" ToRole="Person" />
+        </EntityType>
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="Code" />
@@ -1048,6 +1184,19 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <Property Name="FrenchRating" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Games" Relationship="Self.Game_EsrbRating_FK" FromRole="EsrbRating" ToRole="Game" />
         </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dateStart" Type="DateTime" Precision="3" />
+          <Property Name="dateEnd" Type="DateTime" Precision="3" />
+          <Property Name="attendeeList" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AttendeeLists" Relationship="Self.FK_AttendeeList_Event1" FromRole="Event" ToRole="AttendeeList" />
+        </EntityType>
         <EntityType Name="EventLog">
           <Key>
             <PropertyRef Name="Guid" />
@@ -1057,6 +1206,16 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <Property Name="Category" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Event" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
           <Property Name="Detail" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Friend">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="personOneId" Type="Int32" Nullable="false" />
+          <Property Name="personTwoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Friend_Person" FromRole="Friend" ToRole="Person" />
+          <NavigationProperty Name="Person1" Relationship="Self.FK_personOne_Person" FromRole="Friend" ToRole="Person" />
         </EntityType>
         <EntityType Name="Game">
           <Key>
@@ -1080,7 +1239,10 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <Property Name="EnglishDetail" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="FrenchDetail" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_Game" FromRole="Game" ToRole="Cart" />
           <NavigationProperty Name="EsrbRating" Relationship="Self.Game_EsrbRating_FK" FromRole="Game" ToRole="EsrbRating" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_Game1" FromRole="Game" ToRole="Review" />
+          <NavigationProperty Name="Wishlists" Relationship="Self.FK_Wishlist_Game" FromRole="Game" ToRole="Wishlist" />
           <NavigationProperty Name="GameCategory" Relationship="Self.Game_GameCategory_FK" FromRole="Game" ToRole="GameCategory" />
           <NavigationProperty Name="GamePerspective" Relationship="Self.Game_GamePerspective_FK" FromRole="Game" ToRole="GamePerspective" />
           <NavigationProperty Name="GameStatu" Relationship="Self.Game_GameStatus_FK" FromRole="Game" ToRole="GameStatus" />
@@ -1212,8 +1374,14 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <Property Name="Fax" Type="String" MaxLength="22" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AttendeeList" Relationship="Self.FK_AttendeeList_Person1" FromRole="Person" ToRole="AttendeeList" />
+          <NavigationProperty Name="Carts" Relationship="Self.FK_Person_Cart" FromRole="Person" ToRole="Cart" />
           <NavigationProperty Name="Country" Relationship="Self.Person_Country_FK" FromRole="Person" ToRole="Country" />
           <NavigationProperty Name="Employee" Relationship="Self.Employee_Person_FK" FromRole="Person" ToRole="Employee" />
+          <NavigationProperty Name="Friends" Relationship="Self.FK_Friend_Person" FromRole="Person" ToRole="Friend" />
+          <NavigationProperty Name="Friends1" Relationship="Self.FK_personOne_Person" FromRole="Person" ToRole="Friend" />
+          <NavigationProperty Name="Wishlists" Relationship="Self.FK_personCart_Person" FromRole="Person" ToRole="Wishlist" />
           <NavigationProperty Name="Province" Relationship="Self.Person_Province_FK" FromRole="Person" ToRole="Province" />
         </EntityType>
         <EntityType Name="Platform">
@@ -1322,6 +1490,17 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <Property Name="FrenchName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Locations" Relationship="Self.Location_Region_FK" FromRole="Region" ToRole="Location" />
         </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Guid" Type="Guid" Nullable="false" />
+          <Property Name="personId" Type="Int32" Nullable="false" />
+          <Property Name="reviewContent" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="score" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Game" Relationship="Self.FK_Review_Game1" FromRole="Review" ToRole="Game" />
+        </EntityType>
         <EntityType Name="Supplier">
           <Key>
             <PropertyRef Name="Id" />
@@ -1358,12 +1537,70 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Supplier" Relationship="Self.SupplierContact_Supplier_FK" FromRole="SupplierContact" ToRole="Supplier" />
         </EntityType>
+        <EntityType Name="Wishlist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="personId" Type="Int32" Nullable="false" />
+          <Property Name="Guid" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Game" Relationship="Self.FK_Wishlist_Game" FromRole="Wishlist" ToRole="Game" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_personCart_Person" FromRole="Wishlist" ToRole="Person" />
+        </EntityType>
         <EntityType Name="Sku">
           <Key>
             <PropertyRef Name="Number" />
           </Key>
           <Property Name="Number" Type="Int32" Nullable="false" />
         </EntityType>
+        <Association Name="FK_AttendeeList_Event1">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="AttendeeList" Type="Self.AttendeeList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AttendeeList">
+              <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttendeeList_Person1">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="AttendeeList" Type="Self.AttendeeList" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AttendeeList">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Game">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Guid" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="Guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_Cart">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="personId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Location_Country_FK">
           <End Role="Country" Type="Self.Country" Multiplicity="1" />
           <End Role="Location" Type="Self.Location" Multiplicity="*" />
@@ -1493,6 +1730,54 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </Principal>
             <Dependent Role="Game">
               <PropertyRef Name="EsrbRatingCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Friend_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Friend" Type="Self.Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="personTwoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personOne_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Friend" Type="Self.Friend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Friend">
+              <PropertyRef Name="personOneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Review_Game1">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Guid" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="Guid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wishlist_Game">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="Wishlist" Type="Self.Wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Guid" />
+            </Principal>
+            <Dependent Role="Wishlist">
+              <PropertyRef Name="Guid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1652,6 +1937,18 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_personCart_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Wishlist" Type="Self.Wishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Wishlist">
+              <PropertyRef Name="personId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Person_Province_FK">
           <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
           <End Role="Person" Type="Self.Person" Multiplicity="*" />
@@ -1724,7 +2021,9 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CVGS_Tables" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AttendeeLists" EntityType="Self.AttendeeList" />
+          <EntitySet Name="Carts" EntityType="Self.Cart" />
           <EntitySet Name="Countries" EntityType="Self.Country" />
           <EntitySet Name="CreditCards" EntityType="Self.CreditCard" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
@@ -1733,7 +2032,9 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <EntitySet Name="EmployeePositions" EntityType="Self.EmployeePosition" />
           <EntitySet Name="EsrbContentDescriptors" EntityType="Self.EsrbContentDescriptor" />
           <EntitySet Name="EsrbRatings" EntityType="Self.EsrbRating" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
           <EntitySet Name="EventLogs" EntityType="Self.EventLog" />
+          <EntitySet Name="Friends" EntityType="Self.Friend" />
           <EntitySet Name="Games" EntityType="Self.Game" />
           <EntitySet Name="GameCategories" EntityType="Self.GameCategory" />
           <EntitySet Name="GameCompanies" EntityType="Self.GameCompany" />
@@ -1751,9 +2052,27 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Provinces" EntityType="Self.Province" />
           <EntitySet Name="Regions" EntityType="Self.Region" />
+          <EntitySet Name="Reviews" EntityType="Self.Review" />
           <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
           <EntitySet Name="SupplierContacts" EntityType="Self.SupplierContact" />
+          <EntitySet Name="Wishlists" EntityType="Self.Wishlist" />
           <EntitySet Name="Skus" EntityType="Self.Sku" />
+          <AssociationSet Name="FK_AttendeeList_Event1" Association="Self.FK_AttendeeList_Event1">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="AttendeeList" EntitySet="AttendeeLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttendeeList_Person1" Association="Self.FK_AttendeeList_Person1">
+            <End Role="Person" EntitySet="People" />
+            <End Role="AttendeeList" EntitySet="AttendeeLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Game" Association="Self.FK_Cart_Game">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_Cart" Association="Self.FK_Person_Cart">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
           <AssociationSet Name="Location_Country_FK" Association="Self.Location_Country_FK">
             <End Role="Country" EntitySet="Countries" />
             <End Role="Location" EntitySet="Locations" />
@@ -1797,6 +2116,22 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <AssociationSet Name="Game_EsrbRating_FK" Association="Self.Game_EsrbRating_FK">
             <End Role="EsrbRating" EntitySet="EsrbRatings" />
             <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Friend_Person" Association="Self.FK_Friend_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Friend" EntitySet="Friends" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personOne_Person" Association="Self.FK_personOne_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Friend" EntitySet="Friends" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Review_Game1" Association="Self.FK_Review_Game1">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wishlist_Game" Association="Self.FK_Wishlist_Game">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Wishlist" EntitySet="Wishlists" />
           </AssociationSet>
           <AssociationSet Name="Game_GameCategory_FK" Association="Self.Game_GameCategory_FK">
             <End Role="GameCategory" EntitySet="GameCategories" />
@@ -1850,6 +2185,10 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             <End Role="Region" EntitySet="Regions" />
             <End Role="Location" EntitySet="Locations" />
           </AssociationSet>
+          <AssociationSet Name="FK_personCart_Person" Association="Self.FK_personCart_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Wishlist" EntitySet="Wishlists" />
+          </AssociationSet>
           <AssociationSet Name="Person_Province_FK" Association="Self.Person_Province_FK">
             <End Role="Province" EntitySet="Provinces" />
             <End Role="Person" EntitySet="People" />
@@ -1874,104 +2213,33 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             <End Role="Supplier" EntitySet="Suppliers" />
             <End Role="SupplierContact" EntitySet="SupplierContacts" />
           </AssociationSet>
-          <FunctionImport Name="EmployeeInsert">
-            <Parameter Name="personSurname" Mode="In" Type="String" />
-            <Parameter Name="personGivenName" Mode="In" Type="String" />
-            <Parameter Name="personStreet" Mode="In" Type="String" />
-            <Parameter Name="personCity" Mode="In" Type="String" />
-            <Parameter Name="personProvinceCode" Mode="In" Type="String" />
-            <Parameter Name="personCountryCode" Mode="In" Type="String" />
-            <Parameter Name="personPostalCode" Mode="In" Type="String" />
-            <Parameter Name="personLandLine" Mode="In" Type="String" />
-            <Parameter Name="personExtension" Mode="In" Type="String" />
-            <Parameter Name="personMobile" Mode="In" Type="String" />
-            <Parameter Name="personFax" Mode="In" Type="String" />
-            <Parameter Name="personEmail" Mode="In" Type="String" />
-            <Parameter Name="employeeGln" Mode="In" Type="String" />
-            <Parameter Name="employeePositionCode" Mode="In" Type="String" />
-            <Parameter Name="employeePayCategoryCode" Mode="In" Type="String" />
-            <Parameter Name="employeeDepartmentCode" Mode="In" Type="String" />
-            <Parameter Name="employeeBirthDate" Mode="In" Type="DateTime" />
-            <Parameter Name="employeeHireDate" Mode="In" Type="DateTime" />
-            <Parameter Name="employeeTerminationDate" Mode="In" Type="DateTime" />
-            <Parameter Name="employeeNote" Mode="In" Type="String" />
-            <Parameter Name="userName" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="GameCompanyCount">
-            <Parameter Name="rowCount" Mode="InOut" Type="Int32" />
-            <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GameCompanyDelete">
-            <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GameCompanyImport">
-            <Parameter Name="id" Mode="In" Type="Int32" />
-            <Parameter Name="englishName" Mode="In" Type="String" />
-            <Parameter Name="frenchName" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="GameCompanyInsert">
-            <Parameter Name="englishName" Mode="In" Type="String" />
-            <Parameter Name="frenchName" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="GameCompanyUpdate">
-            <Parameter Name="id" Mode="In" Type="Int32" />
-            <Parameter Name="englishName" Mode="In" Type="String" />
-            <Parameter Name="frenchName" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="InventoryCount">
-            <Parameter Name="rowCount" Mode="InOut" Type="Int32" />
-            <Parameter Name="productGuid" Mode="In" Type="Guid" />
-            <Parameter Name="locationGln" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="InventoryDelete">
-            <Parameter Name="productGuid" Mode="In" Type="Guid" />
-            <Parameter Name="locationGln" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="InventoryImport">
-            <Parameter Name="productGuid" Mode="In" Type="Guid" />
-            <Parameter Name="locationGln" Mode="In" Type="String" />
-            <Parameter Name="newOnHand" Mode="In" Type="Int16" />
-            <Parameter Name="newOnOrder" Mode="In" Type="Int16" />
-            <Parameter Name="usedOnHand" Mode="In" Type="Int16" />
-            <Parameter Name="userName" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="InventoryInsert">
-            <Parameter Name="productGuid" Mode="In" Type="Guid" />
-            <Parameter Name="locationGln" Mode="In" Type="String" />
-            <Parameter Name="newOnHand" Mode="In" Type="Int16" />
-            <Parameter Name="newOnOrder" Mode="In" Type="Int16" />
-            <Parameter Name="usedOnHand" Mode="In" Type="Int16" />
-            <Parameter Name="userName" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="InventoryUpdate">
-            <Parameter Name="productGuid" Mode="In" Type="Guid" />
-            <Parameter Name="locationGln" Mode="In" Type="String" />
-            <Parameter Name="newOnHand" Mode="In" Type="Int16" />
-            <Parameter Name="newOnOrder" Mode="In" Type="Int16" />
-            <Parameter Name="usedOnHand" Mode="In" Type="Int16" />
-            <Parameter Name="userName" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="LogAlert">
-            <Parameter Name="event" Mode="In" Type="String" />
-            <Parameter Name="detail" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="LogError">
-            <Parameter Name="event" Mode="In" Type="String" />
-            <Parameter Name="detail" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="LogInformation">
-            <Parameter Name="event" Mode="In" Type="String" />
-            <Parameter Name="detail" Mode="In" Type="String" />
-          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CVGS_TableModelStoreContainer" CdmEntityContainer="CVGS_Tables">
+        <EntityContainerMapping StorageEntityContainer="CVGS_TablesStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="AttendeeLists">
+            <EntityTypeMapping TypeName="CVGS_Tables.AttendeeList">
+              <MappingFragment StoreEntitySet="AttendeeList">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="eventId" ColumnName="eventId" />
+                <ScalarProperty Name="personId" ColumnName="personId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="CVGS_Tables.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="personId" ColumnName="personId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Countries">
-            <EntityTypeMapping TypeName="CVGS_TableModel.Country">
+            <EntityTypeMapping TypeName="CVGS_Tables.Country">
               <MappingFragment StoreEntitySet="Country">
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Alpha2Code" ColumnName="Alpha2Code" />
@@ -1981,7 +2249,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CreditCards">
-            <EntityTypeMapping TypeName="CVGS_TableModel.CreditCard">
+            <EntityTypeMapping TypeName="CVGS_Tables.CreditCard">
               <MappingFragment StoreEntitySet="CreditCard">
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="EnglishName" ColumnName="EnglishName" />
@@ -1992,7 +2260,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="CVGS_TableModel.Department">
+            <EntityTypeMapping TypeName="CVGS_Tables.Department">
               <MappingFragment StoreEntitySet="Department">
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="EnglishName" ColumnName="EnglishName" />
@@ -2001,7 +2269,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="CVGS_TableModel.Employee">
+            <EntityTypeMapping TypeName="CVGS_Tables.Employee">
               <MappingFragment StoreEntitySet="Employee">
                 <ScalarProperty Name="PersonId" ColumnName="PersonId" />
                 <ScalarProperty Name="Gln" ColumnName="Gln" />
@@ -2017,7 +2285,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmployeePayCategories">
-            <EntityTypeMapping TypeName="CVGS_TableModel.EmployeePayCategory">
+            <EntityTypeMapping TypeName="CVGS_Tables.EmployeePayCategory">
               <MappingFragment StoreEntitySet="EmployeePayCategory">
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="EnglishName" ColumnName="EnglishName" />
@@ -2026,7 +2294,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmployeePositions">
-            <EntityTypeMapping TypeName="CVGS_TableModel.EmployeePosition">
+            <EntityTypeMapping TypeName="CVGS_Tables.EmployeePosition">
               <MappingFragment StoreEntitySet="EmployeePosition">
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="EnglishName" ColumnName="EnglishName" />
@@ -2035,7 +2303,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EsrbContentDescriptors">
-            <EntityTypeMapping TypeName="CVGS_TableModel.EsrbContentDescriptor">
+            <EntityTypeMapping TypeName="CVGS_Tables.EsrbContentDescriptor">
               <MappingFragment StoreEntitySet="EsrbContentDescriptor">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="EnglishDescriptor" ColumnName="EnglishDescriptor" />
@@ -2044,7 +2312,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EsrbRatings">
-            <EntityTypeMapping TypeName="CVGS_TableModel.EsrbRating">
+            <EntityTypeMapping TypeName="CVGS_Tables.EsrbRating">
               <MappingFragment StoreEntitySet="EsrbRating">
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="EnglishRating" ColumnName="EnglishRating" />
@@ -2052,8 +2320,21 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="CVGS_Tables.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="dateStart" ColumnName="dateStart" />
+                <ScalarProperty Name="dateEnd" ColumnName="dateEnd" />
+                <ScalarProperty Name="attendeeList" ColumnName="attendeeList" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="location" ColumnName="location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="EventLogs">
-            <EntityTypeMapping TypeName="CVGS_TableModel.EventLog">
+            <EntityTypeMapping TypeName="CVGS_Tables.EventLog">
               <MappingFragment StoreEntitySet="EventLog">
                 <ScalarProperty Name="Guid" ColumnName="Guid" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -2063,8 +2344,17 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Friends">
+            <EntityTypeMapping TypeName="CVGS_Tables.Friend">
+              <MappingFragment StoreEntitySet="Friend">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="personOneId" ColumnName="personOneId" />
+                <ScalarProperty Name="personTwoId" ColumnName="personTwoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Games">
-            <EntityTypeMapping TypeName="CVGS_TableModel.Game">
+            <EntityTypeMapping TypeName="CVGS_Tables.Game">
               <MappingFragment StoreEntitySet="Game">
                 <ScalarProperty Name="Guid" ColumnName="Guid" />
                 <ScalarProperty Name="GameStatusCode" ColumnName="GameStatusCode" />
@@ -2088,7 +2378,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GameCategories">
-            <EntityTypeMapping TypeName="CVGS_TableModel.GameCategory">
+            <EntityTypeMapping TypeName="CVGS_Tables.GameCategory">
               <MappingFragment StoreEntitySet="GameCategory">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="EnglishCategory" ColumnName="EnglishCategory" />
@@ -2097,7 +2387,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GameCompanies">
-            <EntityTypeMapping TypeName="CVGS_TableModel.GameCompany">
+            <EntityTypeMapping TypeName="CVGS_Tables.GameCompany">
               <MappingFragment StoreEntitySet="GameCompany">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="EnglishName" ColumnName="EnglishName" />
@@ -2106,7 +2396,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GameEsrbContentDescriptors">
-            <EntityTypeMapping TypeName="CVGS_TableModel.GameEsrbContentDescriptor">
+            <EntityTypeMapping TypeName="CVGS_Tables.GameEsrbContentDescriptor">
               <MappingFragment StoreEntitySet="GameEsrbContentDescriptor">
                 <ScalarProperty Name="GameGuid" ColumnName="GameGuid" />
                 <ScalarProperty Name="EsrbContentDescriptorId" ColumnName="EsrbContentDescriptorId" />
@@ -2115,7 +2405,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GamePerspectives">
-            <EntityTypeMapping TypeName="CVGS_TableModel.GamePerspective">
+            <EntityTypeMapping TypeName="CVGS_Tables.GamePerspective">
               <MappingFragment StoreEntitySet="GamePerspective">
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="EnglishPerspectiveName" ColumnName="EnglishPerspectiveName" />
@@ -2124,7 +2414,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GameStatus">
-            <EntityTypeMapping TypeName="CVGS_TableModel.GameStatu">
+            <EntityTypeMapping TypeName="CVGS_Tables.GameStatu">
               <MappingFragment StoreEntitySet="GameStatus">
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="EnglishCategory" ColumnName="EnglishCategory" />
@@ -2133,7 +2423,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GameSubCategories">
-            <EntityTypeMapping TypeName="CVGS_TableModel.GameSubCategory">
+            <EntityTypeMapping TypeName="CVGS_Tables.GameSubCategory">
               <MappingFragment StoreEntitySet="GameSubCategory">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="GameCategoryId" ColumnName="GameCategoryId" />
@@ -2143,7 +2433,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Inventories">
-            <EntityTypeMapping TypeName="CVGS_TableModel.Inventory">
+            <EntityTypeMapping TypeName="CVGS_Tables.Inventory">
               <MappingFragment StoreEntitySet="Inventory">
                 <ScalarProperty Name="ProductGuid" ColumnName="ProductGuid" />
                 <ScalarProperty Name="LocationGln" ColumnName="LocationGln" />
@@ -2155,7 +2445,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Locations">
-            <EntityTypeMapping TypeName="CVGS_TableModel.Location">
+            <EntityTypeMapping TypeName="CVGS_Tables.Location">
               <MappingFragment StoreEntitySet="Location">
                 <ScalarProperty Name="Gln" ColumnName="Gln" />
                 <ScalarProperty Name="Sequence" ColumnName="Sequence" />
@@ -2175,7 +2465,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LocationTypes">
-            <EntityTypeMapping TypeName="CVGS_TableModel.LocationType">
+            <EntityTypeMapping TypeName="CVGS_Tables.LocationType">
               <MappingFragment StoreEntitySet="LocationType">
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="EnglishName" ColumnName="EnglishName" />
@@ -2184,7 +2474,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="People">
-            <EntityTypeMapping TypeName="CVGS_TableModel.Person">
+            <EntityTypeMapping TypeName="CVGS_Tables.Person">
               <MappingFragment StoreEntitySet="Person">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
@@ -2200,11 +2490,12 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
                 <ScalarProperty Name="Fax" ColumnName="Fax" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Platforms">
-            <EntityTypeMapping TypeName="CVGS_TableModel.Platform">
+            <EntityTypeMapping TypeName="CVGS_Tables.Platform">
               <MappingFragment StoreEntitySet="Platform">
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="EnglishName" ColumnName="EnglishName" />
@@ -2213,7 +2504,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Populations">
-            <EntityTypeMapping TypeName="CVGS_TableModel.Population">
+            <EntityTypeMapping TypeName="CVGS_Tables.Population">
               <MappingFragment StoreEntitySet="Population">
                 <ScalarProperty Name="Guid" ColumnName="Guid" />
                 <ScalarProperty Name="Sequence" ColumnName="Sequence" />
@@ -2245,7 +2536,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PopulationClassifications">
-            <EntityTypeMapping TypeName="CVGS_TableModel.PopulationClassification">
+            <EntityTypeMapping TypeName="CVGS_Tables.PopulationClassification">
               <MappingFragment StoreEntitySet="PopulationClassification">
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -2253,7 +2544,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="CVGS_TableModel.Product">
+            <EntityTypeMapping TypeName="CVGS_Tables.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="Guid" ColumnName="Guid" />
                 <ScalarProperty Name="Gtin" ColumnName="Gtin" />
@@ -2277,7 +2568,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Provinces">
-            <EntityTypeMapping TypeName="CVGS_TableModel.Province">
+            <EntityTypeMapping TypeName="CVGS_Tables.Province">
               <MappingFragment StoreEntitySet="Province">
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
@@ -2292,7 +2583,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Regions">
-            <EntityTypeMapping TypeName="CVGS_TableModel.Region">
+            <EntityTypeMapping TypeName="CVGS_Tables.Region">
               <MappingFragment StoreEntitySet="Region">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="EnglishName" ColumnName="EnglishName" />
@@ -2300,8 +2591,19 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="CVGS_Tables.Review">
+              <MappingFragment StoreEntitySet="Review">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="personId" ColumnName="personId" />
+                <ScalarProperty Name="reviewContent" ColumnName="reviewContent" />
+                <ScalarProperty Name="score" ColumnName="score" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Suppliers">
-            <EntityTypeMapping TypeName="CVGS_TableModel.Supplier">
+            <EntityTypeMapping TypeName="CVGS_Tables.Supplier">
               <MappingFragment StoreEntitySet="Supplier">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -2319,7 +2621,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SupplierContacts">
-            <EntityTypeMapping TypeName="CVGS_TableModel.SupplierContact">
+            <EntityTypeMapping TypeName="CVGS_Tables.SupplierContact">
               <MappingFragment StoreEntitySet="SupplierContact">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
@@ -2334,27 +2636,22 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Wishlists">
+            <EntityTypeMapping TypeName="CVGS_Tables.Wishlist">
+              <MappingFragment StoreEntitySet="Wishlist">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="personId" ColumnName="personId" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Skus">
-            <EntityTypeMapping TypeName="CVGS_TableModel.Sku">
+            <EntityTypeMapping TypeName="CVGS_Tables.Sku">
               <MappingFragment StoreEntitySet="Sku">
                 <ScalarProperty Name="Number" ColumnName="Number" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="EmployeeInsert" FunctionName="CVGS_TableModel.Store.EmployeeInsert" />
-          <FunctionImportMapping FunctionImportName="GameCompanyCount" FunctionName="CVGS_TableModel.Store.GameCompanyCount" />
-          <FunctionImportMapping FunctionImportName="GameCompanyDelete" FunctionName="CVGS_TableModel.Store.GameCompanyDelete" />
-          <FunctionImportMapping FunctionImportName="GameCompanyImport" FunctionName="CVGS_TableModel.Store.GameCompanyImport" />
-          <FunctionImportMapping FunctionImportName="GameCompanyInsert" FunctionName="CVGS_TableModel.Store.GameCompanyInsert" />
-          <FunctionImportMapping FunctionImportName="GameCompanyUpdate" FunctionName="CVGS_TableModel.Store.GameCompanyUpdate" />
-          <FunctionImportMapping FunctionImportName="InventoryCount" FunctionName="CVGS_TableModel.Store.InventoryCount" />
-          <FunctionImportMapping FunctionImportName="InventoryDelete" FunctionName="CVGS_TableModel.Store.InventoryDelete" />
-          <FunctionImportMapping FunctionImportName="InventoryImport" FunctionName="CVGS_TableModel.Store.InventoryImport" />
-          <FunctionImportMapping FunctionImportName="InventoryInsert" FunctionName="CVGS_TableModel.Store.InventoryInsert" />
-          <FunctionImportMapping FunctionImportName="InventoryUpdate" FunctionName="CVGS_TableModel.Store.InventoryUpdate" />
-          <FunctionImportMapping FunctionImportName="LogAlert" FunctionName="CVGS_TableModel.Store.LogAlert" />
-          <FunctionImportMapping FunctionImportName="LogError" FunctionName="CVGS_TableModel.Store.LogError" />
-          <FunctionImportMapping FunctionImportName="LogInformation" FunctionName="CVGS_TableModel.Store.LogInformation" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

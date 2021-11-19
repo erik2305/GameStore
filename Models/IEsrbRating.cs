@@ -7,7 +7,7 @@ using System.Web;
 
 namespace GameStore.Models
 {
-    public class IEsrbRating
+    public interface IEsrbRating
     {
         [Required]
         [DisplayName("ESRB")]

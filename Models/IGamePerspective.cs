@@ -6,13 +6,13 @@ using System.Web;
 
 namespace GameStore.Models
 {
-    public static class MetaGamePerspective
+    public interface IGamePerspective
     {
         [DisplayName("POV")]
-        public static string Code { get; set; }
+        string Code { get; set; }
         [DisplayName("POV")]
-        public static string EnglishPerspectiveName { get; set; }
+        string EnglishPerspectiveName { get; set; }
         [DisplayName("POV")]
-        public static string FrenchPerspectiveName { get; set; }
+        string FrenchPerspectiveName { get; set; }
     }
 }

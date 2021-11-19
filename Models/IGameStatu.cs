@@ -7,14 +7,14 @@ using System.Web;
 
 namespace GameStore.Models
 {
-    public static class MetaGameStatu
+    public interface IGameStatu
     {
         [Required]
         [DisplayName("Availability")]
-        public static string Code { get; set; }
+        string Code { get; set; }
         [DisplayName("Availability")]
-        public static string EnglishCategory { get; set; }
+        string EnglishCategory { get; set; }
         [DisplayName("Availability")]
-        public static string FrenchCategory { get; set; }
+        string FrenchCategory { get; set; }
     }
 }

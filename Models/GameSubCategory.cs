@@ -11,21 +11,19 @@ namespace GameStore.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
-    [MetadataType(typeof(MetaGameSubCategory))]
-    public partial class GameSubCategory
+    [MetadataType(typeof(IGameSubCategory))]
+    public partial class GameSubCategory : IGameSubCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GameSubCategory()
         {
             this.Games = new HashSet<Game>();
         }
-        [DisplayName("Sub Category")]
+    
         public int Id { get; set; }
         public int GameCategoryId { get; set; }
-        [DisplayName("Sub Category")]
         public string EnglishCategory { get; set; }
         public string FrenchCategory { get; set; }
     

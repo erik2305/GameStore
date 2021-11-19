@@ -11,8 +11,9 @@ namespace GameStore.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
 
+    [MetadataType(typeof(IGameCategory))]
     public partial class GameCategory : IGameCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,6 +21,7 @@ namespace GameStore.Models
         {
             this.Games = new HashSet<Game>();
         }
+    
         public int Id { get; set; }
         public string EnglishCategory { get; set; }
         public string FrenchCategory { get; set; }
