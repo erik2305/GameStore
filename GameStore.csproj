@@ -168,9 +168,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AttendeeList.cs">
-      <DependentUpon>CVGS_Tables.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Country.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
@@ -208,9 +205,6 @@
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EsrbRating.cs">
-      <DependentUpon>CVGS_Tables.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Event.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EventLog.cs">
