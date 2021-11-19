@@ -11,6 +11,8 @@ namespace GameStore.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+
     public partial class GameCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -18,7 +20,9 @@ namespace GameStore.Models
         {
             this.Games = new HashSet<Game>();
         }
+        [DisplayName("Category")]
         public int Id { get; set; }
+        [DisplayName("Category")]
         public string EnglishCategory { get; set; }
         public string FrenchCategory { get; set; }
     
