@@ -11,18 +11,14 @@ namespace GameStore.Models
 {
     using System;
     using System.Collections.Generic;
-    public partial class GameCategory
-    {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public GameCategory()
-        {
-            this.Games = new HashSet<Game>();
-        }
-        public int Id { get; set; }
-        public string EnglishCategory { get; set; }
-        public string FrenchCategory { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Game> Games { get; set; }
+    public partial class AttendeeList
+    {
+        public int Id { get; set; }
+        public int eventId { get; set; }
+        public int personId { get; set; }
+    
+        public virtual Event Event { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

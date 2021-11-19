@@ -11,18 +11,24 @@ namespace GameStore.Models
 {
     using System;
     using System.Collections.Generic;
-    public partial class EsrbRating
+    
+    public partial class Event
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EsrbRating()
+        public Event()
         {
-            this.Games = new HashSet<Game>();
+            this.AttendeeLists = new HashSet<AttendeeList>();
         }
-        public string Code { get; set; }
-        public string EnglishRating { get; set; }
-        public string FrenchRating { get; set; }
+    
+        public int Id { get; set; }
+        public string name { get; set; }
+        public Nullable<System.DateTime> dateStart { get; set; }
+        public Nullable<System.DateTime> dateEnd { get; set; }
+        public int attendeeList { get; set; }
+        public string description { get; set; }
+        public string location { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Game> Games { get; set; }
+        public virtual ICollection<AttendeeList> AttendeeLists { get; set; }
     }
 }
