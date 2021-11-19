@@ -56,6 +56,8 @@ namespace GameStore.Models
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<SupplierContact> SupplierContacts { get; set; }
         public virtual DbSet<Sku> Skus { get; set; }
+        public virtual DbSet<AttendeeList> AttendeeLists { get; set; }
+        public virtual DbSet<Event> Events { get; set; }
     
         public virtual int EmployeeInsert(string personSurname, string personGivenName, string personStreet, string personCity, string personProvinceCode, string personCountryCode, string personPostalCode, string personLandLine, string personExtension, string personMobile, string personFax, string personEmail, string employeeGln, string employeePositionCode, string employeePayCategoryCode, string employeeDepartmentCode, Nullable<System.DateTime> employeeBirthDate, Nullable<System.DateTime> employeeHireDate, Nullable<System.DateTime> employeeTerminationDate, string employeeNote, string userName)
         {

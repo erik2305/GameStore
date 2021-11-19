@@ -4,7 +4,15 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CVGS_TableModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CVGS_TableModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AttendeeList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="eventId" Type="int" Nullable="false" />
+          <Property Name="personId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="Code" />
@@ -78,6 +86,18 @@
           <Property Name="Code" Type="nchar" MaxLength="5" Nullable="false" />
           <Property Name="EnglishRating" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="FrenchRating" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateStart" Type="datetime" />
+          <Property Name="dateEnd" Type="datetime" />
+          <Property Name="attendeeList" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="300" />
+          <Property Name="location" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="EventLog">
           <Key>
@@ -219,6 +239,7 @@
           <Property Name="Fax" Type="nvarchar" MaxLength="22" />
           <Property Name="Email" Type="nvarchar" MaxLength="60" />
           <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Platform">
           <Key>
@@ -408,6 +429,30 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttendeeList_Event1">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="AttendeeList" Type="Self.AttendeeList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AttendeeList">
+              <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttendeeList_Person1">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="AttendeeList" Type="Self.AttendeeList" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AttendeeList">
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -801,6 +846,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <Parameter Name="detail" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="CVGS_TableModelStoreContainer">
+          <EntitySet Name="AttendeeList" EntityType="Self.AttendeeList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CreditCard" EntityType="Self.CreditCard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
@@ -809,6 +855,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <EntitySet Name="EmployeePosition" EntityType="Self.EmployeePosition" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EsrbContentDescriptor" EntityType="Self.EsrbContentDescriptor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EsrbRating" EntityType="Self.EsrbRating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventLog" EntityType="Self.EventLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GameCategory" EntityType="Self.GameCategory" Schema="dbo" store:Type="Tables" />
@@ -853,6 +900,14 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <AssociationSet Name="Employee_Person_FK" Association="Self.Employee_Person_FK">
             <End Role="Person" EntitySet="Person" />
             <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttendeeList_Event1" Association="Self.FK_AttendeeList_Event1">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="AttendeeList" EntitySet="AttendeeList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttendeeList_Person1" Association="Self.FK_AttendeeList_Person1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="AttendeeList" EntitySet="AttendeeList" />
           </AssociationSet>
           <AssociationSet Name="Game_EsrbRating_FK" Association="Self.Game_EsrbRating_FK">
             <End Role="EsrbRating" EntitySet="EsrbRating" />
@@ -955,8 +1010,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             <End Role="SupplierContact" EntitySet="SupplierContact" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CVGS_TableModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1215,6 +1269,8 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <NavigationProperty Name="Country" Relationship="Self.Person_Country_FK" FromRole="Person" ToRole="Country" />
           <NavigationProperty Name="Employee" Relationship="Self.Employee_Person_FK" FromRole="Person" ToRole="Employee" />
           <NavigationProperty Name="Province" Relationship="Self.Person_Province_FK" FromRole="Person" ToRole="Province" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AttendeeList" Relationship="CVGS_TableModel.FK_AttendeeList_Person1" FromRole="Person" ToRole="AttendeeList" />
         </EntityType>
         <EntityType Name="Platform">
           <Key>
@@ -1902,7 +1958,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GameCompanyDelete">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GameCompanyImport">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -1963,7 +2019,64 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
             <Parameter Name="event" Mode="In" Type="String" />
             <Parameter Name="detail" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="AttendeeLists" EntityType="CVGS_TableModel.AttendeeList" />
+          <EntitySet Name="Events" EntityType="CVGS_TableModel.Event" />
+          <AssociationSet Name="FK_AttendeeList_Event1" Association="CVGS_TableModel.FK_AttendeeList_Event1">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="AttendeeList" EntitySet="AttendeeLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttendeeList_Person1" Association="CVGS_TableModel.FK_AttendeeList_Person1">
+            <End Role="Person" EntitySet="People" />
+            <End Role="AttendeeList" EntitySet="AttendeeLists" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="AttendeeList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="eventId" Type="Int32" Nullable="false" />
+          <Property Name="personId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Event" Relationship="CVGS_TableModel.FK_AttendeeList_Event1" FromRole="AttendeeList" ToRole="Event" />
+          <NavigationProperty Name="Person" Relationship="CVGS_TableModel.FK_AttendeeList_Person1" FromRole="AttendeeList" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dateStart" Type="DateTime" Precision="3" />
+          <Property Name="dateEnd" Type="DateTime" Precision="3" />
+          <Property Name="attendeeList" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="location" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AttendeeLists" Relationship="CVGS_TableModel.FK_AttendeeList_Event1" FromRole="Event" ToRole="AttendeeList" />
+        </EntityType>
+        <Association Name="FK_AttendeeList_Event1">
+          <End Type="CVGS_TableModel.Event" Role="Event" Multiplicity="1" />
+          <End Type="CVGS_TableModel.AttendeeList" Role="AttendeeList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AttendeeList">
+              <PropertyRef Name="eventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttendeeList_Person1">
+          <End Type="CVGS_TableModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="CVGS_TableModel.AttendeeList" Role="AttendeeList" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AttendeeList">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2186,6 +2299,7 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <EntitySetMapping Name="People">
             <EntityTypeMapping TypeName="CVGS_TableModel.Person">
               <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="GivenName" ColumnName="GivenName" />
@@ -2355,6 +2469,28 @@ warning 6002: The table/view 'CVGS.dbo.Sku' does not have a primary key defined.
           <FunctionImportMapping FunctionImportName="LogAlert" FunctionName="CVGS_TableModel.Store.LogAlert" />
           <FunctionImportMapping FunctionImportName="LogError" FunctionName="CVGS_TableModel.Store.LogError" />
           <FunctionImportMapping FunctionImportName="LogInformation" FunctionName="CVGS_TableModel.Store.LogInformation" />
+          <EntitySetMapping Name="AttendeeLists">
+            <EntityTypeMapping TypeName="CVGS_TableModel.AttendeeList">
+              <MappingFragment StoreEntitySet="AttendeeList">
+                <ScalarProperty Name="personId" ColumnName="personId" />
+                <ScalarProperty Name="eventId" ColumnName="eventId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="CVGS_TableModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="attendeeList" ColumnName="attendeeList" />
+                <ScalarProperty Name="dateEnd" ColumnName="dateEnd" />
+                <ScalarProperty Name="dateStart" ColumnName="dateStart" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
