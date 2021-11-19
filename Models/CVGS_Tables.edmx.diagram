@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a00b0afdd93d479cb9a2302eb0cc4694" Name="Diagram1" ZoomLevel="47">
+      <Diagram DiagramId="a00b0afdd93d479cb9a2302eb0cc4694" Name="Diagram1">
         <EntityTypeShape EntityType="CVGS_TableModel.Country" Width="1.5" PointX="6" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CVGS_TableModel.CreditCard" Width="1.5" PointX="2.75" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CVGS_TableModel.Department" Width="1.5" PointX="8.25" PointY="21.75" IsExpanded="true" />
@@ -64,10 +64,6 @@
         <AssociationConnector Association="CVGS_TableModel.Population_Province_FK" ManuallyRouted="false" />
         <AssociationConnector Association="CVGS_TableModel.Supplier_Province_FK" ManuallyRouted="false" />
         <AssociationConnector Association="CVGS_TableModel.SupplierContact_Supplier_FK" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="CVGS_TableModel.AttendeeList" Width="1.5" PointX="13.5" PointY="14" />
-        <EntityTypeShape EntityType="CVGS_TableModel.Event" Width="1.5" PointX="11.25" PointY="0.75" />
-        <AssociationConnector Association="CVGS_TableModel.FK_AttendeeList_Event1" />
-        <AssociationConnector Association="CVGS_TableModel.FK_AttendeeList_Person1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
