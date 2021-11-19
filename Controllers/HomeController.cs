@@ -12,9 +12,18 @@ namespace GameStore.Controllers
 {
     public class HomeController : Controller
     {
-            public ActionResult Index()
+        CVGS_Tables db = new CVGS_Tables();
+        public ActionResult Index(string search)
         {
-            return View();
+            var games = from m in db.Games
+                         select m;
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                games = games.Where(s => s.EnglishName.Contains(search));
+            }
+
+            return View(games.ToList());
         }
 
         public ActionResult Login()

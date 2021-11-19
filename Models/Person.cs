@@ -47,5 +47,6 @@ namespace GameStore.Models
         public virtual Country Country { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual Province Province { get; set; }
+        public virtual AttendeeList AttendeeList { get; set; }
     }
 }
