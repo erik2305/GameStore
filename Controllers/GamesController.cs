@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using GameStore.Models;
+using EntityState = System.Data.Entity.EntityState;
 
 namespace GameStore.Controllers
 {

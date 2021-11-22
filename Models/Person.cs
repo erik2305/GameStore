@@ -11,14 +11,22 @@ namespace GameStore.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    
-    public partial class Person
+
+    [MetadataType(typeof(IPerson))]
+    public partial class Person : IPerson
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Person()
+        {
+            this.Carts = new HashSet<Cart>();
+            this.Friends = new HashSet<Friend>();
+            this.Friends1 = new HashSet<Friend>();
+            this.Wishlists = new HashSet<Wishlist>();
+        }
+    
         public int Id { get; set; }
         public string Surname { get; set; }
-        [DisplayName("First Name")]
         public string GivenName { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
@@ -29,23 +37,23 @@ namespace GameStore.Models
         public string Extension { get; set; }
         public string Mobile { get; set; }
         public string Fax { get; set; }
-        [Required(ErrorMessage = "Input Email", AllowEmptyStrings = false)]
         public string Email { get; set; }
-        [Required(ErrorMessage ="Input User name", AllowEmptyStrings = false)]
-        [DisplayName("User Name")]
         public string UserName { get; set; }
-        [DataType(DataType.Password)]
-        [Required(ErrorMessage = "Input Password", AllowEmptyStrings = false)]
-        [StringLength(30, MinimumLength = 8, ErrorMessage ="Password must be at least 8 characters long")]
         public string Password { get; set; }
-        [Compare("Password", ErrorMessage ="Passwords doesn't match")]
-        [DataType(DataType.Password)]
-        [DisplayName("Confirm Password")]
-        public string ConfirmPassword { get; set; }
-        public string LoginErrorMessage { get; set; }
-
+    
+        public virtual AttendeeList AttendeeList { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cart> Carts { get; set; }
         public virtual Country Country { get; set; }
         public virtual Employee Employee { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Friend> Friends { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Friend> Friends1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Wishlist> Wishlists { get; set; }
         public virtual Province Province { get; set; }
+        public string ConfirmPassword { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string LoginErrorMessage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }

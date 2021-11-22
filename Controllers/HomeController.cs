@@ -62,11 +62,8 @@ namespace GameStore.Controllers
                         
                         db.Configuration.ValidateOnSaveEnabled = false;
                         db.People.Add(U);
-                        try
-                        {
-                            db.SaveChanges();
-                        }
-                        catch (Exception e) { }
+                        db.SaveChanges();
+
                         return RedirectToAction("Index");
                     }
                     else

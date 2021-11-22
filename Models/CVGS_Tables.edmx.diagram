@@ -4,66 +4,81 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a00b0afdd93d479cb9a2302eb0cc4694" Name="Diagram1">
-        <EntityTypeShape EntityType="CVGS_TableModel.Country" Width="1.5" PointX="6" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.CreditCard" Width="1.5" PointX="2.75" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.Department" Width="1.5" PointX="8.25" PointY="21.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.Employee" Width="1.5" PointX="10.5" PointY="16.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.EmployeePayCategory" Width="1.5" PointX="8.25" PointY="24.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.EmployeePosition" Width="1.5" PointX="8.25" PointY="26.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.EsrbContentDescriptor" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.EsrbRating" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.EventLog" Width="1.5" PointX="10.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.Game" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.GameCategory" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.GameCompany" Width="1.5" PointX="6" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.GameEsrbContentDescriptor" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.GamePerspective" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.GameStatu" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.GameSubCategory" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.Inventory" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.Location" Width="1.5" PointX="8.25" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.LocationType" Width="1.5" PointX="6" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.Person" Width="1.5" PointX="11.25" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.Platform" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.Population" Width="1.5" PointX="13.25" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.PopulationClassification" Width="1.5" PointX="11" PointY="26.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.Product" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.Province" Width="1.5" PointX="6" PointY="18.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.Region" Width="1.5" PointX="6" PointY="22.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.Supplier" Width="1.5" PointX="8.25" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.SupplierContact" Width="1.5" PointX="10.5" PointY="21.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CVGS_TableModel.Sku" Width="1.5" PointX="12.75" PointY="2.125" IsExpanded="true" />
-        <AssociationConnector Association="CVGS_TableModel.Location_Country_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Person_Country_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Population_Country_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Supplier_Country_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Employee_Department_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Employee_EmployeePayCategory_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Employee_EmployeePosition_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Employee_Location_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Employee_Person_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.GameEsrbContentDescriptor_EsrbContentDescriptor_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Game_EsrbRating_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Game_GameCategory_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Game_GamePerspective_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Game_GameStatus_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Game_GameSubCategory_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.GameEsrbContentDescriptor_Game_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Product_Game_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Product_GameCompany_Developer_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Product_GameCompany_Publisher_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Inventory_Location_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Inventory_Product_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Location_LocationType_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Location_Province_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Location_Region_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Person_Province_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Product_Platform_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Population_PopulationClassification_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Population_Province_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.Supplier_Province_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="CVGS_TableModel.SupplierContact_Supplier_FK" ManuallyRouted="false" />
+      <Diagram DiagramId="70fc07bc331f4ec39f6e3496fd8d148a" Name="Diagram1">
+        <EntityTypeShape EntityType="CVGS_Tables.AttendeeList" Width="1.5" PointX="8.25" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Cart" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Country" Width="1.5" PointX="0.75" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.CreditCard" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Department" Width="1.5" PointX="8.25" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Employee" Width="1.5" PointX="10.5" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.EmployeePayCategory" Width="1.5" PointX="8.25" PointY="29.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.EmployeePosition" Width="1.5" PointX="8.25" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.EsrbContentDescriptor" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.EsrbRating" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Event" Width="1.5" PointX="6" PointY="37.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.EventLog" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Friend" Width="1.5" PointX="5.25" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Game" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.GameCategory" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.GameCompany" Width="1.5" PointX="6" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.GameEsrbContentDescriptor" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.GamePerspective" Width="1.5" PointX="0.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.GameStatu" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.GameSubCategory" Width="1.5" PointX="0.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Inventory" Width="1.5" PointX="10.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Location" Width="1.5" PointX="8.25" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.LocationType" Width="1.5" PointX="6" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Person" Width="1.5" PointX="3" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Platform" Width="1.5" PointX="6" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Population" Width="1.5" PointX="3" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.PopulationClassification" Width="1.5" PointX="0.75" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Product" Width="1.5" PointX="8.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Province" Width="1.5" PointX="0.75" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Region" Width="1.5" PointX="6" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Review" Width="1.5" PointX="5.25" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Supplier" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.SupplierContact" Width="1.5" PointX="5.25" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Wishlist" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVGS_Tables.Sku" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="CVGS_Tables.FK_AttendeeList_Event1" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.FK_AttendeeList_Person1" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.FK_Cart_Game" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.FK_Person_Cart" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Location_Country_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Person_Country_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Population_Country_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Supplier_Country_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Employee_Department_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Employee_EmployeePayCategory_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Employee_EmployeePosition_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Employee_Location_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Employee_Person_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.GameEsrbContentDescriptor_EsrbContentDescriptor_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Game_EsrbRating_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.FK_Friend_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.FK_personOne_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.FK_Review_Game1" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.FK_Wishlist_Game" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Game_GameCategory_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Game_GamePerspective_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Game_GameStatus_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Game_GameSubCategory_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.GameEsrbContentDescriptor_Game_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Product_Game_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Product_GameCompany_Developer_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Product_GameCompany_Publisher_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Inventory_Location_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Inventory_Product_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Location_LocationType_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Location_Province_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Location_Region_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.FK_personCart_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Person_Province_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Product_Platform_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Population_PopulationClassification_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Population_Province_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.Supplier_Province_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="CVGS_Tables.SupplierContact_Supplier_FK" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
