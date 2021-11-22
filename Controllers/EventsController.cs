@@ -20,8 +20,26 @@ namespace GameStore.Controllers
             return View(db.Events.ToList());
         }
 
+        public ActionResult UserIndex()
+        {
+            return View(db.Events.ToList());
+        }
         // GET: Events/Details/5
         public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Event @event = db.Events.Find(id);
+            if (@event == null)
+            {
+                return HttpNotFound();
+            }
+            return View(@event);
+        }
+
+        public ActionResult UserDetails(int? id)
         {
             if (id == null)
             {
