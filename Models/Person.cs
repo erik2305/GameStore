@@ -14,7 +14,7 @@ namespace GameStore.Models
     using System.ComponentModel.DataAnnotations;
 
     [MetadataType(typeof(IPerson))]
-    public partial class Person : IPerson
+    public partial class Person : IPerson, IPerson1
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Person()
@@ -24,7 +24,7 @@ namespace GameStore.Models
             this.Friends1 = new HashSet<Friend>();
             this.Wishlists = new HashSet<Wishlist>();
         }
-    
+
         public int Id { get; set; }
         public string Surname { get; set; }
         public string GivenName { get; set; }
@@ -40,7 +40,7 @@ namespace GameStore.Models
         public string Email { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-    
+
         public virtual AttendeeList AttendeeList { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Carts { get; set; }

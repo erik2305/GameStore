@@ -255,6 +255,7 @@
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IPerson.cs" />
+    <Compile Include="Models\IPerson1.cs" />
     <Compile Include="Models\Location.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
@@ -282,7 +283,6 @@
     <Compile Include="Models\Region.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Report.cs" />
     <Compile Include="Models\Review.cs">
       <DependentUpon>CVGS_Tables.tt</DependentUpon>
     </Compile>
