@@ -53,7 +53,7 @@ namespace GameStore.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Wishlist> Wishlists { get; set; }
         public virtual Province Province { get; set; }
-        public string ConfirmPassword { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string LoginErrorMessage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string ConfirmPassword { get; set; }
+        public string LoginErrorMessage { get; set; }
     }
 }
